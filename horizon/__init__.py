@@ -6,3 +6,9 @@
 @Author  : caeser zheng
 @Email   : zgl3010@qq.com
 """
+
+__version__ = '0.0.1'
+
+from .auth import Auth
+from .config import set_default
+

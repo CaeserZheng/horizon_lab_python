@@ -10,7 +10,8 @@ import hashlib
 import hmac
 import string
 import time
-from urllib import parse
+from horizon.utils import urlsafe_base64_encode
+
 
 AUTHORIZATION = "authorization"
 RESERVED_CHAR_SET = set(string.ascii_letters + string.digits + '.~-_')
@@ -35,20 +36,19 @@ class Auth():
             return '%%%02X' % i
 
     def normalize_string(self, in_str, encoding_slash=True):
-        NORMALIZED_CHAR_LIST = [
-            self.get_normalized_char(i) for i in range(256)
-        ]
+
         if in_str is None:
             return ''
         # 在生成规范URI时。不需要对斜杠'/'进行编码，其他情况下都需要
         if encoding_slash:
-            encode_f = lambda c: NORMALIZED_CHAR_LIST[ord(c)]
+            if isinstance(in_str,int):
+                res = in_str
+            else:
+                res = urlsafe_base64_encode(in_str)
         else:
-            # 仅仅在生成规范URI时。不需要对斜杠'/'进行编码
-            encode_f = lambda c: NORMALIZED_CHAR_LIST[ord(c)
-                                                      ] if c != '/' else c
-        # 按照RFC 3986进行编码
-        return ''.join([encode_f(ch) for ch in in_str])
+            res = in_str
+
+        return res
 
     def get_canonical_uri(self, path):
         return self.normalize_string(path, False)
@@ -61,6 +61,8 @@ class Auth():
             '%s=%s' % (k, self.normalize_string(v)) for k, v in params.items()
             if k.lower != AUTHORIZATION
         ]
+
+        print("result == >" ,result)
         # 按字典序排序
         result.sort()
         # 使用&符号连接所有字符串并返回

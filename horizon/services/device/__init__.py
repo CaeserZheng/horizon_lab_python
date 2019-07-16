@@ -6,3 +6,5 @@
 @Author  : caeser zheng
 @Email   : zgl3010@qq.com
 """
+
+from .manager import deviceSpaceManager
