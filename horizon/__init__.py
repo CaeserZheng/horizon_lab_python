@@ -11,4 +11,5 @@ __version__ = '0.0.1'
 
 from .auth import Auth
 from .config import set_default
+from horizon_lab_python import *
 

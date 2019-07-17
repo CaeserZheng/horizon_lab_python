@@ -3,9 +3,12 @@
 - horizon
     - auth.py
     - compat.py
+    - dohttp.py
     - config.py
     - utils.py
     - services
-      - device
-      - iservice
-      - analysis
+      - deviceManager
+        - device.py
+        - space.py
+      - intelligentService
+      - analysisTools
