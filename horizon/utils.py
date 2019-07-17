@@ -2,15 +2,23 @@
 
 from base64 import urlsafe_b64encode, urlsafe_b64decode
 from datetime import datetime
-from .compat import b, s
+from .compat import b, s,is_py2,is_py3
+
 
 try:
     import zlib
-
     binascii = zlib
 except ImportError:
     zlib = None
     import binascii
+
+def url_encode(str):
+    if is_py2:
+        import urllib2
+        return urllib2.quote(str)
+    elif is_py3:
+        import urllib.parse
+        return urllib.parse.quote(str)
 
 
 def urlsafe_base64_encode(data):
