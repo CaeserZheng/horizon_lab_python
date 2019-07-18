@@ -11,6 +11,11 @@ import json
 from horizon import dohttp
 import horizon.auth as au
 
+space_config_feild=set([
+    'name',             #设备空间的名字，最长80个字符
+    'description',      #设备空间描述
+    'extra'             #其他冗余属性，可json的字符串
+])
 
 class deviceSpaceManager(object):
     '''
@@ -55,9 +60,7 @@ class deviceSpaceManager(object):
 
         authorization = self.auth.get_sign(http_method=method,path=path,params=params,headers=headers)
 
-        url = 'http://{0}{1}?current={2}&per_page={3}&authorization={4}'.format(
-            self.host , path , current,per_page , authorization
-        )
+
         url = 'http://{0}{1}?{2}'.format(
             self.host, path, au.get_canonical_querystring(params)
         )
@@ -114,19 +117,17 @@ class deviceSpaceManager(object):
 
         data = {'name':name}
         for k,v in kwargs.items():
-            data.update({k:v})
+            if k in space_config_feild:
+                data.update({k:v})
 
-        print("data----")
-        print(data)
 
         headers = {
             'host': self.host,
-            'content-type':'application%2Fjson'
+            'content-type':self.content_type
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        #url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 
@@ -148,7 +149,8 @@ class deviceSpaceManager(object):
 
         data = {}
         for k,v in kwargs.items():
-            data.update({k:v})
+            if k in space_config_feild:
+                data.update({k:v})
 
         print("data----")
         print(data)

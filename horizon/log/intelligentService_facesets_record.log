@@ -15,3 +15,37 @@
         }
     }
 }
+{
+    "op": "test facesets search by facesets_id",
+    "timestamp": "2019-07-18 23:41:56",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "47ffe4c9-fd97-4475-a798-90b593e56083",
+        "data": {
+            "updated_time": "2019-07-18T20:16:25+08:00",
+            "faceset_id": "5d3029a7a21c33000804b8e4",
+            "description": "test office facesets",
+            "created_time": "2019-07-18T16:11:19+08:00",
+            "extra": "",
+            "name": "update-ttt"
+        }
+    }
+}
+{
+    "op": "test facesets search by facesets_id",
+    "timestamp": "2019-07-19 00:32:48",
+    "info": {
+        "data": {
+            "created_time": "2019-07-18T16:11:19+08:00",
+            "extra": "",
+            "faceset_id": "5d3029a7a21c33000804b8e4",
+            "description": "test office facesets",
+            "name": "update-ttt",
+            "updated_time": "2019-07-18T20:16:25+08:00"
+        },
+        "request_id": "b45e452c-ba3b-4158-9b37-1ca0861ae3cd",
+        "code": 0,
+        "message": "success"
+    }
+}

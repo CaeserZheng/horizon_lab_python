@@ -10,7 +10,6 @@
 import json
 from horizon import dohttp
 import horizon.auth as au
-from horizon.services.deviceManager import  device_config
 
 _moduls = set([
         'capture_config',  #摄像机配置模块

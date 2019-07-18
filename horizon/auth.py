@@ -23,8 +23,8 @@ class Auth():
         self.ak = app_access_key
         self.sk = app_secret_key
 
-        print('------ak-------\n',self.ak)
-        print('------sk-------\n', self.sk,'\n------------')
+        #print('------ak-------\n',self.ak)
+        #print('------sk-------\n', self.sk,'\n------------')
 
     @staticmethod
     def __checkKey(access_key, secret_key):

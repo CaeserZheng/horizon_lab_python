@@ -11,22 +11,11 @@ from horizon.services.intelligentService import facei, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json
-from horizon.record import InfoRecode
+from horizon.test.utils  import HorizionTestBase
+from horizon.test.test_param_cfg import ak,sk
 
-ak = 'J1dKGVvbsU7bciqUk0vkC7UB'
-sk = 'PrjvA7hWOQojtgt2PYYWkgFXu7bYXnPw'
 
-class HorizionTest(object):
-    def __init__(self):
-        pass
-
-    @classmethod
-    def __writelog(self,re,op):
-        note = InfoRecode('../../log','intelligentService_facesets')
-        for i in re:
-            print(i)
-        note.add_record(op,re[0]) if re[0] else note.add_record(op,re[1].error)
-
+class FacesetsTest(HorizionTestBase):
 
     def test_fdb_build(self,fdb):
         name = 'office-3'
@@ -34,34 +23,35 @@ class HorizionTest(object):
         op = 'test facesets build'
         re = fdb.build(name,discription)
 
-        self.__writelog(re,op)
+        self.writelog(re,op)
 
     def test_fdb_delete(self,fdb):
         facesets_id = '5d303c19f67f1000085b1f27'
         op = 'test facesets build'
         re = fdb.delete(facesets_id)
 
-        self.__writelog(re,op)
+        self.writelog(re,op)
     def test_fdb_update(self,fdb):
         facesets_id = '5d3029a7a21c33000804b8e4'
         name = 'update-ttt'
         op = 'test facesets info update'
         re = fdb.update(facesets_id,name=name)
 
-        self.__writelog(re, op)
+        self.writelog(re, op)
 
     def test_fdb_search(self,fdb):
         facesets_id = '5d3029a7a21c33000804b8e4'
         op = 'test facesets search by facesets_id'
         re = fdb.search(facesets_id)
 
-        self.__writelog(re,op)
+
+        self.writelog(re,op)
 
     def test_fdb_list(self, fdb):
         op = 'test facesets list'
         re = fdb.list()
 
-        self.__writelog(re,op)
+        self.writelog(re,op)
 
 
 
@@ -70,7 +60,7 @@ if __name__ == '__main__':
     mac = Auth(ak,sk)
     fdb = facesets.facesetsManager(mac)
 
-    ht = HorizionTest()
+    ht = FacesetsTest(log_path='../../log',log_tag='intelligentService_facesets')
     #ht.test_fdb_mkFacesets(fdb=fdb)
 
     #ht.test_fdb_delete(fdb)
