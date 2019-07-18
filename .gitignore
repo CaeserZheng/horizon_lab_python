@@ -5,6 +5,8 @@ Desktop.ini
 
 # my test param config
 test_param_cfg.py
+.idea/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
