@@ -101,7 +101,7 @@ class deviceSpaceManager(object):
 
         return ret,info
 
-    def mkspace(self,name,**kwargs):
+    def build(self,name,**kwargs):
         '''
         创建设备空间
         :param name: 设备空间名字

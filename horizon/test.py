@@ -27,7 +27,27 @@ if __name__ == '__main__':
     attributes = {
         'capture_config':['snapsizethr','frontthr']
     }
-    print(dm.list(current,per_page,attributes))
+    #print(dm.list(current,per_page,attributes))
+
+    print('test update_config')
+    device_sn = 'aaa'
+    device_cfg = [
+        {
+            'name':'track_score_eliminate',
+            'value':2
+        },
+        {
+            'name':'switchregion',
+            'value':True
+        }
+    ]
+    #print(dm.update_config(device_sn,device_cfg))
+
+    #print('test screenshot')
+    #print(dm.screenshot(device_sn))
+
+    print('test device delete')
+    print(dm.device_delete(device_sn))
 
     device_sn='fadfadf'
     #print(dm.device_info(device_sn))

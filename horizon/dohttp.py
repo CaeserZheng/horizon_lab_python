@@ -28,7 +28,6 @@ _headers = {'User-Agent': USER_AGENT}
 
 
 def __return_wrapper(resp):
-    print("code-->",resp.status_code)
     if resp.status_code != 200:
         return None, ResponseInfo(resp)
     resp.encoding = 'utf-8'
@@ -153,8 +152,11 @@ class ResponseInfo(object):
                     self.error = '{"code":%d","message":%s}' % (ret['code'] , ret['message'])
         
         '''
+            self.status_code = response.status_code
+            self.text_body = response.text
+            ret = {}
             try:
-                ret = response.json()
+                ret = response.json() if response.text!='' else None
                 if ret['code'] != 0:
                     self.status_code = -1
                     self.text_body = response
