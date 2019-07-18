@@ -30,3 +30,5 @@
 - 2019.07.18 测试 attributes 参数
     - TODO 文档请求范例有问题，https://iotdoc.horizon.ai/busiopenapi/part2_api_devices/device.html#part2_3
 
+- 2019.07.18 测试智能服务
+    - TODO 文档站错误比较多，整理集中反馈
