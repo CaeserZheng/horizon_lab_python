@@ -109,7 +109,7 @@ class facesetsManager(object):
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 
-        ret, info = dohttp._put(url, data=data, auth=authorization, headers=headers)
+        ret, info = dohttp._put(url, data=json.dumps(data), auth=authorization, headers=headers)
 
         return ret, info
 
@@ -132,28 +132,58 @@ class facesetsManager(object):
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 
-        ret, info = dohttp._delete(url, auth=authorization)
+        ret, info = dohttp._get(url, auth=authorization)
 
         return ret, info
 
-    def list(self):
+    def list(self,current=1,per_page=20):
         '''
-        返回当前api调用者的人脸库列表
+        获取设备空间列表
+        参考：https://iotdoc.horizon.ai/busiopenapi/part1_device_space/device_space.html#part1_0
+        :param current:当前页,不填时默认为1，需要和per_page同时填/不填
+        :param per_page:每页数量，不填时默认值为20
+        :param space_id:设备空间id，不传时返回默认设备空间下的设备列表
+        attributes={name,capture_config}
+            name          模块
+            capture_config 配置
         :return:
+            一个dict变量，类似 {"hash": "<Hash string>", "key": "<Key string>"}
+            一个ResponseInfo对象
+            一个EOF信息。
         '''
+
         method = 'GET'
         path = '/openapi/v1/facesets'
 
-        headers = {
-            'host': self.host
+        #验证current 、per_page
+        if  (current and per_page):
+            current = current
+            per_page = per_page
+        elif not (current == per_page):
+            raise ValueError('current and per_page must fill in at the same time or neither')
+
+        params = {
+            'current': current,
+            'per_page' : per_page,
         }
 
-        authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
+        headers = {
+            'host' : self.host
+        }
 
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        authorization = self.auth.get_sign(http_method=method,path=path,params=params,headers=headers)
+        query = au.get_canonical_querystring(params=params)
+
+        url = 'http://{0}{1}?{2}'.format(
+            self.host, path, query
+        )
         print(url)
 
-        ret, info = dohttp._delete(url, auth=authorization)
+        ret, info = dohttp._get(url, '',auth=authorization)
+        # 枚举列表是否完整
+        eof = False
+        if ret :
+            if ret["pagination"]["current"] * ret["pagination"]["per_page"] >= ret["pagination"]["total"]:
+                eof = True
 
-        return ret, info
+        return ret, eof, info

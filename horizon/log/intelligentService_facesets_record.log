@@ -1,0 +1,17 @@
+{
+    "timestamp": "2019-07-18 20:30:37",
+    "op": "test facesets search by facesets_id",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "c60da798-388d-4858-8707-f7557c48c037",
+        "data": {
+            "faceset_id": "5d3029a7a21c33000804b8e4",
+            "name": "update-ttt",
+            "extra": "",
+            "description": "test office facesets",
+            "created_time": "2019-07-18T16:11:19+08:00",
+            "updated_time": "2019-07-18T20:16:25+08:00"
+        }
+    }
+}

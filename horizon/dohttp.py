@@ -173,9 +173,6 @@ class ResponseInfo(object):
             else:
                 self.error = '{"code":%d","message":%s}' % (ret['code'] , ret['message'])
 
-
-
-
     def ok(self):
         return self.status_code == 200
 
