@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 """
-@File    : test.py
+@File    : test_facesets.py
 @Time    : 2019/7/18 14:54
 @Author  : caeser zheng
 @Email   : zgl3010@qq.com
 """
 
-from horizon.services.intelligentService import facei, facesets, faceu
+from horizon.services.intelligentService import faced, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json

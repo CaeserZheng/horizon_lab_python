@@ -5,6 +5,7 @@ from datetime import datetime
 from .compat import b, s,is_py2,is_py3
 import json
 import time
+import base64
 
 
 try:
@@ -21,6 +22,15 @@ def url_encode(str):
     elif is_py3:
         import urllib.parse
         return urllib.parse.quote(str)
+
+def image_base64_encode(file):
+    with open(file, 'rb') as f:  # open（‘这里是图片地址’，‘这个打开模式读’）
+        return str(base64.b64encode(f.read()),'utf-8')
+
+def image_base64_decode(image_file,b64str):
+    with open(image_file, 'wb') as f:  # open（‘这里是图片地址’，‘这个打开模式读’）
+        f.write(base64.b64decode(b64str))
+        return image_file
 
 
 def urlsafe_base64_encode(data):
@@ -57,4 +67,3 @@ def rfc_from_timestamp(timestamp):
     last_modified_str = last_modified_date.strftime(
         '%a, %d %b %Y %H:%M:%S GMT')
     return last_modified_str
-

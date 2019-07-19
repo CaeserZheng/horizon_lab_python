@@ -11,8 +11,14 @@ import json
 from horizon import dohttp
 import horizon.auth as au
 
+_faseset_feild = set([
+    'name',
+    'description',
+    'extra'
+])
 
-class facesetsManager(object):
+
+class FaceSetsManager(object):
     '''
     人脸库管理API，可用于人脸库的创建，删除和信息更新以及人脸库列表的查询
     '''
@@ -21,11 +27,6 @@ class facesetsManager(object):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
         self.content_type = 'application%2Fjson'
-        self._faseset_feild = set([
-            'name',
-            'description',
-            'extra'
-        ])
 
     def build(self, name, **kwargs):
         '''
@@ -41,7 +42,7 @@ class facesetsManager(object):
 
         data = {'name': name}
         for k, v in kwargs.items():
-            if k in self._faseset_feild:
+            if k in _faseset_feild:
                 data.update({k: v})
 
         headers = {
@@ -95,7 +96,7 @@ class facesetsManager(object):
 
         data = {}
         for k, v in kwargs.items():
-            if k in self._faseset_feild:
+            if k in _faseset_feild:
                 data.update({k: v})
 
         headers = {
@@ -136,7 +137,7 @@ class facesetsManager(object):
 
         return ret, info
 
-    def list(self,current=1,per_page=20):
+    def list(self, current=1, per_page=20):
         '''
         获取设备空间列表
         参考：https://iotdoc.horizon.ai/busiopenapi/part1_device_space/device_space.html#part1_0
@@ -155,8 +156,8 @@ class facesetsManager(object):
         method = 'GET'
         path = '/openapi/v1/facesets'
 
-        #验证current 、per_page
-        if  (current and per_page):
+        # 验证current 、per_page
+        if (current and per_page):
             current = current
             per_page = per_page
         elif not (current == per_page):
@@ -164,14 +165,14 @@ class facesetsManager(object):
 
         params = {
             'current': current,
-            'per_page' : per_page,
+            'per_page': per_page,
         }
 
         headers = {
-            'host' : self.host
+            'host': self.host
         }
 
-        authorization = self.auth.get_sign(http_method=method,path=path,params=params,headers=headers)
+        authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
         query = au.get_canonical_querystring(params=params)
 
         url = 'http://{0}{1}?{2}'.format(
@@ -179,11 +180,11 @@ class facesetsManager(object):
         )
         print(url)
 
-        ret, info = dohttp._get(url, '',auth=authorization)
+        ret, info = dohttp._get(url, '', auth=authorization)
         # 枚举列表是否完整
         eof = False
-        if ret :
+        if ret:
             if ret["pagination"]["current"] * ret["pagination"]["per_page"] >= ret["pagination"]["total"]:
                 eof = True
 
-        return ret, eof, info
+        return ret, info, eof
