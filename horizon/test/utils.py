@@ -32,6 +32,9 @@ class HorizionTestBase(object):
     测试类
     '''
     def __init__(self,log_path=None,log_tag=None,log_file=None):
+        self.log_path = log_path
+        self.log_tag = log_tag
+        self.log_file = log_file
         self.note = InfoRecode(log_path,log_tag,log_file)
 
 

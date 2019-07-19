@@ -106,7 +106,7 @@ class deviceManager(object):
             if ret["pagination"]["current"] * ret["pagination"]["per_page"] >= ret["pagination"]["total"]:
                 eof = True
 
-        return ret, eof, info
+        return ret, info, eof
 
     def device_info(self,device_sn,**kwargs):
         '''
