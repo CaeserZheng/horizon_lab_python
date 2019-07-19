@@ -1,0 +1,71 @@
+{
+    "timestamp": "2019-07-19 18:52:37",
+    "op": "test faced search",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "62badeac-f231-4d63-ad5d-d10ab39c22ce",
+        "data": {
+            "distance_thresholds": {
+                "1e-3": 1.0311,
+                "1e-4": 0.9277,
+                "1e-5": 0.8432,
+                "1e-6": 0.7664
+            },
+            "items": [
+                {
+                    "id": "5d314db3f67f1000085b20d2",
+                    "faceset_id": "5d3029a7a21c33000804b8e4",
+                    "attributes": [
+                        {
+                            "type": "age_group",
+                            "value": "2",
+                            "confidence": 0,
+                            "is_manual": true
+                        },
+                        {
+                            "type": "gender",
+                            "value": "1",
+                            "confidence": 0,
+                            "is_manual": true
+                        }
+                    ],
+                    "distance": 9.5367431640625e-07,
+                    "similar": 0.9999999403953552,
+                    "images": [
+                        {
+                            "url": "https://horizon-ib-test.oss-cn-zhangjiakou.aliyuncs.com/Pictureserver/a21c33f35d2d88ad0dac680b/2019719/a21c33f35d2d88ad0dac680b_sNc7wBAvEafk-1563512243910027103?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LTAIiUHHchQK9Lfy%2F20190719%2Fcn-zhangjiakou%2Fs3%2Faws4_request&X-Amz-Date=20190719T105237Z&X-Amz-Expires=604740&X-Amz-SignedHeaders=host&X-Amz-Signature=5b54e55c4134828caba774b6ca824b99ec4aaa3dadb0f8fb4a2262462c85b492",
+                            "expired_time": "2019-07-26T18:41:37+08:00"
+                        },
+                        {
+                            "url": "https://horizon-ib-test.oss-cn-zhangjiakou.aliyuncs.com/Pictureserver/a21c33f35d2d88ad0dac680b/2019719/a21c33f35d2d88ad0dac680b_W0qYHBwQdElH-1563515710152364409?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LTAIiUHHchQK9Lfy%2F20190719%2Fcn-zhangjiakou%2Fs3%2Faws4_request&X-Amz-Date=20190719T105237Z&X-Amz-Expires=604740&X-Amz-SignedHeaders=host&X-Amz-Signature=78362f6850778725345689d451211eccf458dceda05a74e15be4f2246ddb3e26",
+                            "expired_time": "2019-07-26T18:41:37+08:00"
+                        }
+                    ],
+                    "created_time": "2019-07-19T12:57:24+08:00",
+                    "updated_time": "2019-07-19T13:55:10+08:00",
+                    "active_time": "2019-07-19T12:57:24+08:00"
+                }
+            ]
+        }
+    }
+}
+{
+    "timestamp": "2019-07-19 19:03:53",
+    "op": "test faced match",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "8b44b562-63dd-41b7-b394-d519712fdd2c",
+        "data": {
+            "similarity": 0.96293044,
+            "distance": 0.4448347,
+            "distance_threshold": {
+                "1e-3": 1.0311,
+                "1e-4": 0.9277,
+                "1e-5": 0.8432,
+                "1e-6": 0.7664
+            }
+        }
+    }
+}

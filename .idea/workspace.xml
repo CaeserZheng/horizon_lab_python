@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b9f27ed-d10c-4ff0-bd37-130d1e071057" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/horizon/services/intelligentService/faced.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/horizon/test/intelligentService/test_faced.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/horizon/test/intelligentService/test_faceu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/services/deviceManager/device.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/services/deviceManager/device.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/services/deviceManager/space.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/services/deviceManager/space.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/services/intelligentService/facei.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/test/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/services/intelligentService/facesets.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/services/intelligentService/facesets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/services/intelligentService/faceu.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/services/intelligentService/faceu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/test/intelligentService/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/test/intelligentService/test_facesets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/test/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/test/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/horizon/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/horizon/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -120,6 +109,15 @@
                 <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -150,6 +148,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>attributes</find>
+      <find>.log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,6 +184,7 @@
         <option value="$PROJECT_DIR$/horizon/services/intelligentService/faced.py" />
         <option value="$PROJECT_DIR$/horizon/test/intelligentService/test_faced.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -408,7 +408,7 @@
       <updated>1563414773157</updated>
       <workItem from="1563414774444" duration="25243000" />
       <workItem from="1563501172517" duration="134000" />
-      <workItem from="1563501328353" duration="27486000" />
+      <workItem from="1563501328353" duration="28930000" />
     </task>
     <servers />
   </component>
@@ -424,7 +424,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52863000" />
+    <option name="totallyTimeSpent" value="54307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
@@ -460,13 +460,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/horizon/services/deviceManager/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="73">
@@ -722,6 +715,13 @@
             <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
     </entry>
