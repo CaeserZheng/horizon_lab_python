@@ -36,7 +36,6 @@ def image_base64_decode(image_file,b64str):
 def urlsafe_base64_encode(data):
     """urlsafe的base64编码:
     对提供的数据进行urlsafe的base64编码。规格参考：
-    https://developer.qiniu.com/kodo/manual/1231/appendix#1
     Args:
         data: 待编码的数据，一般为字符串
     Returns:

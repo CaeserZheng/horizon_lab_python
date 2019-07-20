@@ -32,7 +32,7 @@ _face_images_field = set([
 ])
 
 
-class FaceUserManamer(object):
+class FaceUserManager(object):
     '''
     人脸库的用户管理API可用于对特定人脸库中的用户进行注册、删除、原信息更改、人脸更新，以及用户列表的查询。
     注意：在调用人脸库用户管理API之前，需要确保该人脸库已经存在

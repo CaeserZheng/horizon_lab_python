@@ -105,7 +105,7 @@ if __name__ == '__main__':
     fdb = faced.FaceDetect(mac)
 
     ht = FacedTest(log_path='../../log', log_tag='intelligentService_faced')
-    # ht.test_fdb_detect(fdb)
+    ht.test_fdb_detect(fdb)
     #ht.test_fdb_face_extract(fdb)
     #ht.test_fdb_face_search(fdb)
-    ht.test_fdb_face_match(fdb)
+    #ht.test_fdb_face_match(fdb)

@@ -12,8 +12,9 @@
     ├── dohttp.py
     ├── example
     ├── log
-    │   ├── deviceManeger_space_record.log
-    │   └── intelligentService_facesets_record.log
+    │   ├── intelligentService_faced_record.log
+    │   ├── intelligentService_facesets_record.log
+    │   └── intelligentService_faceu_record.log
     ├── services
     │   ├── __init__.py
     │   ├── analysisTools
@@ -25,15 +26,18 @@
     │   │   └── space.py
     │   └── intelligentService
     │       ├── __init__.py
-    │       ├── facei.py
+    │       ├── faced.py
     │       ├── facesets.py
     │       └── faceu.py
     ├── test
     │   ├── __init__.py
     │   ├── deviceManager
-    │   │   └── test.py
+    │   │   └── test_space.py
     │   ├── intelligentService
-    │   │   └── test.py
+    │   │   ├── test_faced.py
+    │   │   ├── test_facesets.py
+    │   │   └── test_faceu.py
+    │   ├── test.py
     │   ├── test_param_cfg.py
     │   └── utils.py
     └── utils.py

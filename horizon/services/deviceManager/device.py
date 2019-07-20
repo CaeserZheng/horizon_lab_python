@@ -31,7 +31,7 @@ capture_config = set([
 ])
 
 
-class deviceManager(object):
+class DeviceManager(object):
     '''
     设备空间管理
     '''

@@ -11,14 +11,14 @@ import json
 from horizon import dohttp
 import horizon.auth as au
 
-space_config_feild = set([
+_space_config_feild = set([
     'name',  # 设备空间的名字，最长80个字符
     'description',  # 设备空间描述
     'extra'  # 其他冗余属性，可json的字符串
 ])
 
 
-class deviceSpaceManager(object):
+class DeviceSpaceManager(object):
     '''
     设备空间管理
     '''
@@ -117,7 +117,7 @@ class deviceSpaceManager(object):
 
         data = {'name': name}
         for k, v in kwargs.items():
-            if k in space_config_feild:
+            if k in _space_config_feild:
                 data.update({k: v})
 
         headers = {
@@ -148,7 +148,7 @@ class deviceSpaceManager(object):
 
         data = {}
         for k, v in kwargs.items():
-            if k in space_config_feild:
+            if k in _space_config_feild:
                 data.update({k: v})
 
         print("data----")

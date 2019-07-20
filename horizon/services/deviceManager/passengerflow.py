@@ -7,7 +7,7 @@
 @Email   : zgl3010@qq.com
 """
 
-class pfManager(object):
+class PassengerFlowManager(object):
     '''
     客流机配置接口，可以用于管理客流机的划线功能，可以用于统计进出店客流以及店外途径客流的等数据
     '''
