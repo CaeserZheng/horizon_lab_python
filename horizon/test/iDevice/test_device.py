@@ -77,7 +77,7 @@ if __name__ == '__main__':
     mac = Auth(ak,sk)
     fdb = device.DeviceManager(mac)
 
-    ht = DeviceTest(log_path='../../log',log_tag='deviceManeger_device')
+    ht = DeviceTest(log_path='../../log',log_tag='iDevice_device')
 
     #####test device.py
     #ht.test_device_list(fdb=fdb)

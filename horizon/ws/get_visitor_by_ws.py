@@ -9,6 +9,7 @@
 
 import websocket
 import time
+from horizon.auth import Auth
 try:
     import thread
 except ImportError:
@@ -52,12 +53,34 @@ class GetVisitorByWebsocket(object):
 
         authorization = self.auth.get_sign(http_method=self.method,path=self.path,
                                            params=None,headers=headers)
+        headers.update({'authorization':authorization})
+
+        h = []
+        for k , v in headers.items():
+            if not k == 'host':
+                h.append('%s:%s' % (k , v))
+
+        #ws_uri = '{0}?authorization={1}'.format(self.ws_addr,authorization)
+        ws_uri = '{0}'.format(self.ws_addr)
+
+        print(ws_uri)
 
         websocket.enableTrace(True)
-        ws = websocket.WebSocketApp("ws://xpushservice-aiot.horizon.ai/ws",
+        ws = websocket.WebSocketApp(ws_uri,
                                     on_message=self.on_message,
                                     on_error=self.on_error,
-                                    on_close=self.on_close)
-        ws.on_open = self.on_open
+                                    on_close=self.on_close,
+                                    header=h
+                                    )
+        #ws.on_open = self.on_open
         ws.run_forever()
-\
+
+if __name__ =='__main__':
+    from horizon.test.test_param_cfg import ak , sk
+
+    mac = Auth(ak , sk)
+    wst = GetVisitorByWebsocket(mac)
+
+    client_id = 'visitor_sub_space_1'
+
+    wst.lisetn(client_id)

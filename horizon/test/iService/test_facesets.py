@@ -10,7 +10,7 @@
 from horizon.services.iServices import faced, facesets, faceu
 from horizon.auth import Auth
 import unittest
-import json
+import json,sys
 from horizon.test.utils  import HorizionTestBase
 from horizon.test.test_param_cfg import ak,sk
 
@@ -20,8 +20,9 @@ class FacesetsTest(HorizionTestBase):
     def test_fdb_build(self,fdb):
         name = 'office-3'
         discription = 'test office facesets'
-        op = 'test facesets build'
-        re = fdb.build(name,discription)
+
+        op = 'test %s ' % sys._getframe().f_code.co_name
+        re = fdb.build(name,discription=discription)
 
         self.writelog(re,op)
 
@@ -58,15 +59,15 @@ class FacesetsTest(HorizionTestBase):
 if __name__ == '__main__':
 
     mac = Auth(ak,sk)
-    fdb = facesets.facesetsManager(mac)
+    fdb = facesets.FaceSetsManager(mac)
 
-    ht = FacesetsTest(log_path='../../log',log_tag='intelligentService_facesets')
-    #ht.test_fdb_mkFacesets(fdb=fdb)
+    ht = FacesetsTest(log_path='../../log',log_tag='iService_facesets')
+    ht.test_fdb_build(fdb)
 
     #ht.test_fdb_delete(fdb)
     #ht.test_fdb_update(fdb)
     #ht.test_fdb_list(fdb)
-    ht.test_fdb_search(fdb)
+    #ht.test_fdb_search(fdb)
 
 
 

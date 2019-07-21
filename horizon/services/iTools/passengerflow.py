@@ -28,9 +28,6 @@ class PassergentFlowAnalysis(object):
         self.host = "api-aiot.horizon.ai"
         self.content_type = 'application%2Fjson'
 
-    def ios8601time(self):
-        pass
-
     def enable_analysis(self, space_id, enable_auto_reg=True):
         '''
 
@@ -68,12 +65,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'POST'
-        path = '/openapi/v1/analysis_tools/enable'
-
-        if not isinstance(space_ids, '[]'):
-            raise ValueError('space_ids [ %s ] must be a array ')
-        if not isinstance(faceset_ids, '[]'):
-            raise ValueError('faceset_ids [ %s ] must be a array ')
+        path = '/openapi/v1/analysis_tools/attach_space'
 
         data = {
             'space_ids': space_ids,

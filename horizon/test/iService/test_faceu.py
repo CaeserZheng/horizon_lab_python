@@ -31,7 +31,7 @@ class FaceuTest(HorizionTestBase):
         }
         #images.append(image1)
         #image_file = 'E:\Pictures\james.png'
-        image_file = 'E:\个人\职业.jpg'
+        image_file = '../../example/image/wyz_01.jpeg'
         image2 = {
             'image_type': 1,
             'image_base64': image_base64_encode(image_file)
@@ -100,14 +100,14 @@ class FaceuTest(HorizionTestBase):
 
 if __name__ == '__main__':
     mac = Auth(ak, sk)
-    fdb = faceu.FaceUserManamer(mac)
+    fdb = faceu.FaceUserManager(mac)
 
-    ht = FaceuTest(log_path='../../log', log_tag='intelligentService_faceu')
-    #ht.test_fdb_register(fdb)
+    ht = FaceuTest(log_path='../../log', log_tag='iService_faceu')
+    ht.test_fdb_register(fdb)
     # ht.test_fdb_mkFacesets(fdb=fdb)
 
-    ht.test_fdb_delete(fdb)
+    #ht.test_fdb_delete(fdb)
     #ht.test_fdb_update_user(fdb)
     #ht.test_fdb_update_user_image(fdb)
-    ht.test_fdb_list(fdb)
+    #ht.test_fdb_list(fdb)
     # ht.test_fdb_search(fdb)

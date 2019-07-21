@@ -5,7 +5,7 @@ __author__ = 'caeser'
 __mtime__ = '2019/7/18'
 '''
 
-from horizon.services.iDevices import device, passengerflow, space
+from horizon.services.iDevices import device, pfmachine, space
 from horizon.auth import Auth
 import json,sys
 from horizon.test.utils  import HorizionTestBase
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     mac = Auth(ak,sk)
     fdb = space.DeviceSpaceManager(mac)
 
-    ht = SpaceTest(log_path='../../log',log_tag='deviceManeger_space')
+    ht = SpaceTest(log_path='../../log',log_tag='iDevice_space')
 
     #####test space.py
     #ht.test_space_build(fdb=fdb)

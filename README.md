@@ -12,35 +12,47 @@
     ├── dohttp.py
     ├── example
     ├── log
-    │   ├── intelligentService_faced_record.log
-    │   ├── intelligentService_facesets_record.log
-    │   └── intelligentService_faceu_record.log
+    │   ├── deviceManeger_device
+    │   │   └── record.log
+    │   ├── deviceManeger_passengerflow
+    │   │   └── record.log
+    │   └── deviceManeger_space
+    │       └── record.log
     ├── services
     │   ├── __init__.py
-    │   ├── analysisTools
-    │   │   └── __init__.py
     │   ├── deviceManager
+    │   ├── iDevices
     │   │   ├── __init__.py
     │   │   ├── device.py
     │   │   ├── passengerflow.py
     │   │   └── space.py
+    │   ├── iServices
+    │   │   ├── __init__.py
+    │   │   ├── faced.py
+    │   │   ├── facesets.py
+    │   │   └── faceu.py
+    │   ├── iTools
+    │   │   ├── __init__.py
+    │   │   └── passengerflow.py
     │   └── intelligentService
-    │       ├── __init__.py
-    │       ├── faced.py
-    │       ├── facesets.py
-    │       └── faceu.py
     ├── test
     │   ├── __init__.py
-    │   ├── deviceManager
+    │   ├── iDevice
+    │   │   ├── test_device.py
+    │   │   ├── test_passengerflow.py
     │   │   └── test_space.py
-    │   ├── intelligentService
+    │   ├── iService
     │   │   ├── test_faced.py
     │   │   ├── test_facesets.py
     │   │   └── test_faceu.py
     │   ├── test.py
     │   ├── test_param_cfg.py
     │   └── utils.py
-    └── utils.py
+    ├── test.py
+    ├── utils.py
+    └── ws
+        ├── __init__.py
+        └── get_visitor_by_ws.py
 
 </pre>
 
@@ -59,3 +71,6 @@
 - 2019.07.19 
     - 添加人脸识别
     - TODO 智能分析模块
+    
+- 2019.07.21 
+    - TODO 实现websocket client ，接受服务端推送

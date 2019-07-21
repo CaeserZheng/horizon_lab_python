@@ -30,6 +30,7 @@ class FaceSetsManager(object):
 
     def build(self, name, **kwargs):
         '''
+        为当前api调用者创建人脸库
         :param
         name	string	是	人脸库名, 长度限制80字符
         extra	string	否	人脸库额外信息，长度限制512字符
@@ -106,7 +107,6 @@ class FaceSetsManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 
