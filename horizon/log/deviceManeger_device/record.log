@@ -1,0 +1,95 @@
+{
+    "timestamp": "2019-07-21 14:57:03",
+    "op": "test device list",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "03d297f7-c7f7-4b71-afa4-2c10710cef80",
+        "data": null,
+        "pagination": {
+            "current": 1,
+            "total": 0,
+            "per_page": 20
+        }
+    }
+}
+{
+    "timestamp": "2019-07-21 15:09:08",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:17:33",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:20:07",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:20:56",
+    "op": "test device device_info",
+    "info": "{\"code\":100001\",\"message\":Parameter error: module snapsizethr is not exist. }"
+}
+{
+    "timestamp": "2019-07-21 15:21:08",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:21:20",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:21:48",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 15:31:25",
+    "op": "test device device_info",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 16:24:42",
+    "op": "test test_device_device_info ",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 16:36:16",
+    "op": "test test_device_device_info ",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 16:36:16",
+    "op": "test test_device_update_info ",
+    "info": "{\"code\":404\",\"message\":404 page not found}"
+}
+{
+    "timestamp": "2019-07-21 16:36:57",
+    "op": "test test_device_device_info ",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 16:36:57",
+    "op": "test test_device_update_info ",
+    "info": "{\"code\":1002\",\"message\":Authorization failed}"
+}
+{
+    "timestamp": "2019-07-21 16:37:10",
+    "op": "test test_device_device_info ",
+    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
+}
+{
+    "timestamp": "2019-07-21 16:37:11",
+    "op": "test test_device_update_info ",
+    "info": {
+        "message": "Service 7 Get Device common error: Device not found ",
+        "code": 120703,
+        "request_id": "9534654b-5d45-47f6-a485-ca60bd6970de",
+        "data": null
+    }
+}

@@ -11,11 +11,18 @@ import json
 from horizon import dohttp
 import horizon.auth as au
 
-_moduls = set([
+_moduls_feild = set([
         'capture_config',  #摄像机配置模块
 ])
 
-capture_config = set([
+_device_info_feild = set([
+    'space_id',	    #string	是	目标设备空间id
+    'name',	        #string	否	设备名称，长度限制80字节
+    'position',	    #string	否	设备所在设备空间具体位置，长度限制80字节
+    'description',	#string	否	设备描述,长度限制512字节
+    'extra'	        #string	否	设备额外信息，长度限制512字节
+])
+_capture_config_feild = set([
     'snapsizethr',	#int	抓拍的最小人脸大小(单位像素)，抓拍机/客流机：32~256；识别机：64~256，默认值：80
     'frontthr', 	#int	抓拍阀值，取值：1~10；对应值：1--(-2000)；2--(-1000)；3--(0)；4--(500)；5--(1000)；6--(1200)；7--(1400)；8--(1600)；9--(1700)；10--(1800)，默认值：5
     'beginpostframethr',	#int	目标抓拍时间，取值：[0.5、1、2、3、4、5、10、20、30、40]；对应值：0.5--10; 1--25; 2--50; 3--75; 4--100; 5--125; 10--250; 20--500; 30--750; 40--1000，默认值：20
@@ -41,7 +48,7 @@ class DeviceManager(object):
         self.host = "api-aiot.horizon.ai"
         self.content_type = 'application%2Fjson'
 
-    def list(self,current=1,per_page=20,attributes=None):
+    def list(self,current=1,per_page=20,space_id=None,attributes=None):
         '''
         获取设备空间列表
         参考：https://iotdoc.horizon.ai/busiopenapi/part1_device_space/device_space.html#part1_0
@@ -68,34 +75,24 @@ class DeviceManager(object):
         elif not (current == per_page):
             raise ValueError('current and per_page must fill in at the same time or neither')
 
+        #生成请求参数
         params = {
             'current': current,
             'per_page' : per_page,
         }
-
-        if attributes and isinstance(attributes,dict):
-            for k,v in attributes.items():
-                params.update({k:v})
-        '''
-        ATT = 'attributes'
-        if attributes and isinstance(attributes , dict):
-            for k,v in attributes.items():
-                params.update({ATT:k})
-                for value in v:
-                    params.update({ATT: value})
-
-        '''
+        params.update({'space_id':space_id}) if space_id else None
+        if attributes:
+            params.update({'attributes': 'capture_config'})
+            params.update({'capture_config': attributes['capture_config']})
 
         headers = {
             'host' : self.host
         }
 
         authorization = self.auth.get_sign(http_method=method,path=path,params=params,headers=headers)
-        query = au.get_canonical_querystring(params=params)
-        print(query)
 
         url = 'http://{0}{1}?{2}'.format(
-            self.host, path, query
+            self.host, path, au.get_canonical_querystring(params=params)
         )
         print(url)
 
@@ -108,7 +105,7 @@ class DeviceManager(object):
 
         return ret, info, eof
 
-    def device_info(self,device_sn,**kwargs):
+    def device_info(self,device_sn,attributes=None):
         '''
         返回指定的设备空间详细信息,主要是设备空间本身的属性信息
         :param device_sn: 空间id
@@ -120,16 +117,16 @@ class DeviceManager(object):
         path = '/openapi/v1/devices/%s' % device_sn
 
         params = {}
-        for k,v in kwargs.items():
-            params.update({k:v})
+
+        if attributes:
+            params.update({'attributes': 'capture_config'})
+            params.update({'capture_config': attributes['capture_config']})
 
         headers = {
             'host': self.host
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
-
-        #url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
 
         if params:
             url = 'http://{0}{1}?{2}'.format(self.host, path,au.get_canonical_querystring(params))
@@ -154,22 +151,19 @@ class DeviceManager(object):
         extra	string	否	设备额外信息，长度限制512字节
         '''
         method = 'PUT'
-        path = '/openapi/v1/device_spaces/%s/update' % device_sn
+        path = '/openapi/v1/devices/%s/update' % device_sn
 
         data = {'space_id':space_id}
         for k,v in kwargs.items():
-            data.update({k:v})
+            data.update({k:v}) if k in _device_info_feild else None
 
-        print("data----")
-        print(data)
 
         headers = {
             'host': self.host,
-            'content-type': 'application/json'
+            'content-type': self.content_type
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 

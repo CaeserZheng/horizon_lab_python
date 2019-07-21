@@ -1,0 +1,35 @@
+{
+    "timestamp": "2019-07-21 16:20:34",
+    "op": "test test_space_list ",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "51c0dbfa-8f5f-4f93-8439-1b62c0bdcb3b",
+        "data": [
+            {
+                "space_id": "a21c33f35d2d88ad0dac680b_S5goKvFq",
+                "name": "space_build_1",
+                "created_time": "2019-07-19T00:17:43.712+08:00",
+                "updated_time": "2019-07-19T00:17:43.712+08:00",
+                "description": "space build 1",
+                "faceset_ids": [],
+                "enable_auto_reg": false,
+                "enable_analysis_tools": false
+            },
+            {
+                "space_id": "a21c33f35d2d88ad0dac680bdefaultspace",
+                "name": "default",
+                "created_time": "2019-07-16T16:19:57.115+08:00",
+                "updated_time": "2019-07-16T16:19:57.115+08:00",
+                "faceset_ids": [],
+                "enable_auto_reg": false,
+                "enable_analysis_tools": false
+            }
+        ],
+        "pagination": {
+            "current": 1,
+            "total": 2,
+            "per_page": 20
+        }
+    }
+}

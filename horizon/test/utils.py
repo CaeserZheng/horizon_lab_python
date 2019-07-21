@@ -7,15 +7,23 @@ __mtime__ = '2019/7/19'
 
 import time
 import json
+import os
+import sys
 
 class InfoRecode(object):
     '''
     记录测试日志
     '''
     def __init__(self,path=None,tag=None,file=None):
-        self.file = file if file else 'record.log'
-        file_name = '{0}_{1}'.format(tag,self.file) if tag else self.file
-        self.file = '{0}/{1}'.format(path,file_name) if path else file_name
+
+        self.recode_log_path = '{0}/{1}'.format(path,tag)
+        if not os.path.exists(self.recode_log_path.strip()):
+            os.makedirs(self.recode_log_path)
+            print('make [%s] success!!' % self.recode_log_path )
+
+        self.recode_log_name = file if file else 'record.log'
+
+        self.file = '{0}/{1}'.format(self.recode_log_path,self.recode_log_name)
 
     def add_record(self, op,info):
         re_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(time.time())))
@@ -36,7 +44,6 @@ class HorizionTestBase(object):
         self.log_tag = log_tag
         self.log_file = log_file
         self.note = InfoRecode(log_path,log_tag,log_file)
-
 
     def writelog(self,re,op):
         for i in re:

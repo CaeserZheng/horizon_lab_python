@@ -128,8 +128,6 @@ class FaceSetsManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
         url = 'http://{0}{1}'.format(self.host, path)
         print(url)
 
@@ -180,7 +178,7 @@ class FaceSetsManager(object):
         )
         print(url)
 
-        ret, info = dohttp._get(url, '', auth=authorization)
+        ret, info = dohttp._get(url, auth=authorization)
         # 枚举列表是否完整
         eof = False
         if ret:

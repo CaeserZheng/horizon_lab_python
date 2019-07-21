@@ -7,7 +7,7 @@
 @Email   : zgl3010@qq.com
 """
 
-from horizon.services.intelligentService import faced, facesets, faceu
+from horizon.services.iServices import faced, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json

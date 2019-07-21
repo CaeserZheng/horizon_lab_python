@@ -57,6 +57,21 @@ def urlsafe_base64_decode(data):
     return ret
 
 
+def unix_from_datetime(dt):
+    s = time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S'))
+    return int(s)
+
+def ios8601_from_timestamp(timestamp):
+    '''
+    """将时间戳转换为HTTP IOS-8601格式
+    :param timestamp: 整型Unix时间戳（单位秒）
+    :return:
+    '''
+    d = datetime.fromtimestamp(timestamp)
+    return d.strftime("%Y-%m-%dT%H:%M:%S+08:00")
+
+
+
 def rfc_from_timestamp(timestamp):
     """将时间戳转换为HTTP RFC格式
     Args:
