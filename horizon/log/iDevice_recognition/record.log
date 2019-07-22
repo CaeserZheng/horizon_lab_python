@@ -1,0 +1,10 @@
+{
+    "timestamp": "2019-07-22 15:24:48",
+    "op": "test test_faceset_build ",
+    "info": "{\"code\":1002\",\"message\":Authorization failed}"
+}
+{
+    "timestamp": "2019-07-22 15:27:07",
+    "op": "test test_faceset_build ",
+    "info": "HTTPConnectionPool(host='recopenapi-aiot.horizon.ai', port=80): Max retries exceeded with url: /openapi/v1/facesets (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x03AAF290>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))"
+}

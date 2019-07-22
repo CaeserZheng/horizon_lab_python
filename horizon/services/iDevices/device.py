@@ -46,6 +46,9 @@ class DeviceManager(object):
     def __init__(self,auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host,self.api_version)
+
         self.content_type = 'application%2Fjson'
 
     def list(self,current=1,per_page=20,space_id=None,attributes=None):
@@ -66,7 +69,7 @@ class DeviceManager(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/devices'
+        path = '/devices'
 
         #验证current 、per_page
         if  (current and per_page):
@@ -91,8 +94,8 @@ class DeviceManager(object):
 
         authorization = self.auth.get_sign(http_method=method,path=path,params=params,headers=headers)
 
-        url = 'http://{0}{1}?{2}'.format(
-            self.host, path, au.get_canonical_querystring(params=params)
+        url = '{0}{1}?{2}'.format(
+            self.base_url, path, au.get_canonical_querystring(params=params)
         )
         print(url)
 
@@ -114,7 +117,7 @@ class DeviceManager(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/devices/%s' % device_sn
+        path = '/devices/%s' % device_sn
 
         params = {}
 
@@ -129,9 +132,9 @@ class DeviceManager(object):
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
 
         if params:
-            url = 'http://{0}{1}?{2}'.format(self.host, path,au.get_canonical_querystring(params))
+            url = '{0}{1}?{2}'.format(self.base_url, path,au.get_canonical_querystring(params))
         else:
-            url = 'http://{0}{1}'.format(self.host,path)
+            url = '{0}{1}'.format(self.base_url,path)
         print(url)
 
         ret, info = dohttp._get(url, '',authorization)
@@ -151,7 +154,7 @@ class DeviceManager(object):
         extra	string	否	设备额外信息，长度限制512字节
         '''
         method = 'PUT'
-        path = '/openapi/v1/devices/%s/update' % device_sn
+        path = '/devices/%s/update' % device_sn
 
         data = {'space_id':space_id}
         for k,v in kwargs.items():
@@ -164,7 +167,7 @@ class DeviceManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._put(url, json.dumps(data), authorization, headers=headers)
@@ -200,7 +203,7 @@ class DeviceManager(object):
         '''
 
         method = 'PUT'
-        path = '/openapi/v1/devices/%s' % device_sn
+        path = '/devices/%s' % device_sn
 
         moduls = 'capture_config'
         if isinstance(device_cfg, list):
@@ -221,8 +224,7 @@ class DeviceManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._put(url, json.dumps(data), authorization, headers=headers)
         return ret, info
@@ -234,7 +236,7 @@ class DeviceManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/devices/screenshot'
+        path = '/devices/screenshot'
 
         data = {
             'device_sn':device_sn
@@ -247,7 +249,7 @@ class DeviceManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
         # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
         return ret, info
@@ -259,15 +261,14 @@ class DeviceManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/openapi/v1/devices/%s' % device_sn
+        path = '/devices/%s' % device_sn
 
         headers = {
             'host': self.host
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._delete(url, auth=authorization)
         return ret, info

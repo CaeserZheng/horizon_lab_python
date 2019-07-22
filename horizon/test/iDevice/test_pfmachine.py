@@ -5,7 +5,7 @@ __author__ = 'caeser'
 __mtime__ = '2019/7/18'
 '''
 
-from horizon.services.iDevices import device, pfmachine, space
+from horizon.services.iDevices import device, pfm_config, space
 from horizon.auth import Auth
 import unittest
 import json
@@ -69,7 +69,7 @@ class PassengerFlowTest(HorizionTestBase):
 if __name__ == '__main__':
 
     mac = Auth(ak,sk)
-    fdb = pfmachine.PassengerFlowManager(mac)
+    fdb = pfm_config.PassengerFlowManager(mac)
 
     ht = PassengerFlowTest(log_path='../../log',log_tag='iDevice_pfmachine')
 

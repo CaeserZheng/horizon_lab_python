@@ -31,7 +31,9 @@ class PassengerFlowManager(object):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = "api-aiot.horizon.ai"
+        self.host = 'api-aiot.horizon.ai'
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
         self.content_type = 'application%2Fjson'
 
     def pf_line_config(self, device_sn, lines, start_time, end_time):
@@ -50,7 +52,7 @@ class PassengerFlowManager(object):
         '''
 
         method = 'POST'
-        path = '/openapi/v1/passengerflow/lines_config'
+        path = '/passengerflow/lines_config'
 
         data = {
             'device_sn': device_sn,
@@ -64,7 +66,7 @@ class PassengerFlowManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
@@ -78,14 +80,14 @@ class PassengerFlowManager(object):
         :return:
         '''
         method = 'GET'
-        path = '/openapi/v1/passengerflow/%s' % device_sn
+        path = '/passengerflow/%s' % device_sn
 
         headers = {
             'host': self.host
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._get(url, auth = authorization)
@@ -101,7 +103,7 @@ class PassengerFlowManager(object):
         '''
 
         method = 'PUT'
-        path = '/openapi/v1/passengerflow/%s/switch' % device_sn
+        path = '/passengerflow/%s/switch' % device_sn
 
         data = {'switch_status':switch_status}
 
@@ -111,7 +113,7 @@ class PassengerFlowManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._put(url, data=data, auth=authorization, headers=headers)
@@ -126,14 +128,14 @@ class PassengerFlowManager(object):
         '''
 
         method = 'DELETE'
-        path = '/openapi/v1/passengerflow/%s' % device_sn
+        path = '/passengerflow/%s' % device_sn
 
         headers = {
             'host': self.host
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._delete(url, auth=authorization)

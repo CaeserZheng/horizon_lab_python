@@ -26,6 +26,8 @@ class PassergentFlowAnalysis(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
         self.content_type = 'application%2Fjson'
 
     def enable_analysis(self, space_id, enable_auto_reg=True):
@@ -37,7 +39,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'POST'
-        path = '/openapi/v1/analysis_tools/enable'
+        path = '/analysis_tools/enable'
 
         data = {
             'space_id': space_id,
@@ -50,7 +52,7 @@ class PassergentFlowAnalysis(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
@@ -65,7 +67,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'POST'
-        path = '/openapi/v1/analysis_tools/attach_space'
+        path = '/analysis_tools/attach_space'
 
         data = {
             'space_ids': space_ids,
@@ -79,7 +81,7 @@ class PassergentFlowAnalysis(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
@@ -97,7 +99,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/analysis_tools/%s/count' % device_sn
+        path = '/analysis_tools/%s/count' % device_sn
 
         params = {
             'start_time': start_time,
@@ -109,7 +111,7 @@ class PassergentFlowAnalysis(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
-        url = 'http://{0}{1}?{2}'.format(self.host, path, au.get_canonical_querystring(params))
+        url = '{0}{1}?{2}'.format(self.base_url, path, au.get_canonical_querystring(params))
         print(url)
         ret, info = dohttp._get(url, authorization)
 
@@ -127,7 +129,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/analysis_tools/%s/visitors' % device_sn
+        path = '/analysis_tools/%s/visitors' % device_sn
 
         # 验证current 、per_page
         if (current and per_page):
@@ -148,7 +150,7 @@ class PassergentFlowAnalysis(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
-        url = 'http://{0}{1}?{2}'.format(self.host, path, au.get_canonical_querystring(params))
+        url = '{0}{1}?{2}'.format(self.base_url, path, au.get_canonical_querystring(params))
         print(url)
 
         ret, info = dohttp._get(url, auth=authorization)
@@ -170,7 +172,7 @@ class PassergentFlowAnalysis(object):
         :return:
         '''
         method = 'PUT'
-        path = '/openapi/v1/analysis_tools/visitors/sub'
+        path = '/analysis_tools/visitors/sub'
 
         if not topic_name in _topic_name_feild:
             raise ValueError('topic_name [%s] error!!' % topic_name)
@@ -188,7 +190,7 @@ class PassergentFlowAnalysis(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._put(url, data=json.dumps(data), auth=authorization, headers=headers)
@@ -202,7 +204,7 @@ class PassergentFlowAnalysis(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/openapi/v1/analysis_tools/visitors/sub/%s' % subscription_id
+        path = '/analysis_tools/visitors/sub/%s' % subscription_id
 
         headers = {
             'host': self.host
@@ -210,7 +212,7 @@ class PassergentFlowAnalysis(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._delete(url, auth=authorization)
@@ -224,7 +226,5 @@ class PassergentFlowAnalysis(object):
         :return:
         '''
 
-        method = 'GET'
-        host = 'xpushservice-aiot.horizon.ai'
-        path = 'ws://xpushservice-aiot.horizon.ai/ws'
+        pass
 

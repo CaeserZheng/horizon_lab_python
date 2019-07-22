@@ -29,8 +29,10 @@ _face_match_feild = set([
     'image_url_2',  # string	否	第二张图片URL
     'image_base64_1',  # string	否	第一张图片的base64 编码的二进制图片数据
     'image_base64_2',  # string	否	第二张图片的base64 编码的二进制图片数据
-    'face_rect_1',  # string	否	第一张图片指定人脸位置，4个int类型，依次是左上角横坐标，左上角纵坐标，右下角横坐标，右下角纵坐标； 比如： "face_rect_1": "24,19,74,83"。不提供此参数时，默认检测当前图片的最大人脸；当传入此参数时，对于此人脸框之外的区域，系统不会进行人脸检测，也不会返回任何其他的人脸信息
-    'face_rect_2',  # string	否	第二张图片指定人脸位置，4个int类型，依次是左上角横坐标，左上角纵坐标，右下角横坐标，右下角纵坐标； 比如： "face_rect_2": "24,19,74,83"。不提供此参数时，默认检测当前图片的最大人脸；当传入此参数时，对于此人脸框之外的区域，系统不会进行人脸检测，也不会返回任何其他的人脸信息
+    'face_rect_1',
+    # string	否	第一张图片指定人脸位置，4个int类型，依次是左上角横坐标，左上角纵坐标，右下角横坐标，右下角纵坐标； 比如： "face_rect_1": "24,19,74,83"。不提供此参数时，默认检测当前图片的最大人脸；当传入此参数时，对于此人脸框之外的区域，系统不会进行人脸检测，也不会返回任何其他的人脸信息
+    'face_rect_2',
+    # string	否	第二张图片指定人脸位置，4个int类型，依次是左上角横坐标，左上角纵坐标，右下角横坐标，右下角纵坐标； 比如： "face_rect_2": "24,19,74,83"。不提供此参数时，默认检测当前图片的最大人脸；当传入此参数时，对于此人脸框之外的区域，系统不会进行人脸检测，也不会返回任何其他的人脸信息
     'features_1',  # string	否	第一张图的特征的base64字符串。将每一维特征的值按照相应的类型转为字符串并以逗号为分隔符进行拼接，拼接后整体进行base64，当希望用特征进行搜索时，此为必需字段
     'features_2',  # string	否	第二张图的特征的base64字符串。将每一维特征的值按照相应的类型转为字符串并以逗号为分隔符进行拼接，拼接后整体进行base64，当希望用特征进行搜索时，此为必需字段
     'model_version',  # string	否	模型版本，当希望用特征进行比对时，此为必需字段
@@ -66,6 +68,8 @@ class FaceDetect(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
         self.content_type = 'application%2Fjson'
 
     def __checkurl(self, strs):
@@ -80,7 +84,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/faces/detect'
+        path = '/faces/detect'
 
         data = {'image_type': image_type}
 
@@ -102,13 +106,13 @@ class FaceDetect(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
         return ret, info
 
-    def match(self, image_type, image_obj_1,image_obj_2,**kwargs):
+    def match(self, image_type, image_obj_1, image_obj_2, **kwargs):
         '''
         将两个人脸进行比对，来判断是否为同一个人
         :param image_type:
@@ -117,7 +121,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/faces/match'
+        path = '/faces/match'
 
         data = {'image_type': image_type}
 
@@ -138,7 +142,7 @@ class FaceDetect(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
@@ -154,7 +158,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/faces/search'
+        path = '/faces/search'
 
         data = {'image_type': image_type}
 
@@ -166,7 +170,7 @@ class FaceDetect(object):
             else:
                 raise ValueError('error image_url [%s..]' % (image_obj[:10]))
 
-        data.update({'faceset_ids':faceset_ids})
+        data.update({'faceset_ids': faceset_ids})
 
         for k, v in kwargs.items():
             if k in _face_search_feild:
@@ -178,11 +182,12 @@ class FaceDetect(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
 
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
         return ret, info
+
 
     def face_extract(self, image_type, image_obj, **kwargs):
         '''
@@ -193,7 +198,8 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/faces/face_extract'
+        path = '/faces/face_extract'
+
 
         data = {'image_type': image_type}
 
@@ -215,7 +221,7 @@ class FaceDetect(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 

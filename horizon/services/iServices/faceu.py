@@ -41,6 +41,8 @@ class FaceUserManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
         self.content_type = 'application%2Fjson'
 
     def register(self, faceset_id, images, **kwargs):
@@ -52,7 +54,7 @@ class FaceUserManager(object):
         '''
 
         method = 'POST'
-        path = '/openapi/v1/facesets/%s/faces' % faceset_id
+        path = '/facesets/%s/faces' % faceset_id
 
         data = {'images': images}
         for k, v in kwargs.items():
@@ -67,8 +69,7 @@ class FaceUserManager(object):
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
         ret, info = dohttp._post(url, json.dumps(data), authorization, headers=headers)
 
@@ -81,7 +82,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/openapi/v1/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         headers = {
             'host': self.host
@@ -90,7 +91,7 @@ class FaceUserManager(object):
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
         # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._delete(url, auth=authorization)
@@ -105,7 +106,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'PUT'
-        path = '/openapi/v1/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         data = {}
         for k, v in kwargs.items():
@@ -119,7 +120,7 @@ class FaceUserManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._put(url, data=json.dumps(data), auth=authorization, headers=headers)
@@ -137,7 +138,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/facesets/%s/faces/%s/images_add' % (faceset_id, face_id)
+        path = '/facesets/%s/faces/%s/images_add' % (faceset_id, face_id)
 
         data = {'images': images}
         for k, v in kwargs.items():
@@ -151,7 +152,7 @@ class FaceUserManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._post(url, data=json.dumps(data), auth=authorization, headers=headers)
@@ -165,16 +166,14 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'GET'
-        path = '/openapi/v1/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         headers = {
             'host': self.host
         }
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
-
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._get(url, auth=authorization)
@@ -195,7 +194,7 @@ class FaceUserManager(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/facesets/%s/faces' % faceset_id
+        path = '/facesets/%s/faces' % faceset_id
 
         # 验证current 、per_page
         if (current and per_page):
@@ -216,8 +215,8 @@ class FaceUserManager(object):
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
         query = au.get_canonical_querystring(params=params)
 
-        url = 'http://{0}{1}?{2}'.format(
-            self.host, path, query
+        url = '{0}{1}?{2}'.format(
+            self.base_url, path, query
         )
         print(url)
 

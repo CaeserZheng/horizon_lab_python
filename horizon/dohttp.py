@@ -104,14 +104,16 @@ def _get(url, params=None, auth=None):
     return __return_wrapper(r)
 
 
-def _delete(url, params=None, auth=None):
+def _delete(url, data=None ,params=None, auth=None):
     try:
         r = requests.delete(
             url,
+            data=data,
             params=params,
             auth=RequestsAuth(auth) if auth is not None else None,
             timeout=config.get_default('connection_timeout'),
-            headers=_headers)
+            headers=_headers
+        )
     except Exception as e:
         return None, ResponseInfo(None, e)
     return __return_wrapper(r)

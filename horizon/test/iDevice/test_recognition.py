@@ -5,7 +5,7 @@ __author__ = 'caeser'
 __mtime__ = '2019/7/18'
 '''
 
-from horizon.services.iDevices import device, pfm_config, space
+from horizon.services.iDevices import recognition
 from horizon.auth import Auth
 import json,sys
 from horizon.test.utils  import HorizionTestBase
@@ -13,15 +13,16 @@ from horizon.test.test_param_cfg import ak,sk
 
 
 
-class SpaceTest(HorizionTestBase):
+class RecognitionTest(HorizionTestBase):
 
-    def test_space_list(self,fdb):
+    def test_faceset_build(self,fdb):
+        name = '识别机人脸库01'
         op = 'test %s ' % sys._getframe().f_code.co_name
-        re = fdb.list()
+        re = fdb.build(name=name)
 
         self.writelog(re,op)
 
-    def test_space_space_info(self,fdb):
+    def test_faceset_delete(self,fdb):
         space_id = 'a21c33f35d2d88ad0dac680bdefaultspace'
         op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.space_info(space_id)
@@ -59,13 +60,14 @@ class SpaceTest(HorizionTestBase):
 if __name__ == '__main__':
 
     mac = Auth(ak,sk)
-    fdb = space.DeviceSpaceManager(mac)
+    fdb = recognition.RecognitionMachineManager(mac)
 
-    ht = SpaceTest(log_path='../../log',log_tag='iDevice_space')
+    ht = RecognitionTest(log_path='../../log',log_tag='iDevice_recognition')
 
     #####test space.py
+    ht.test_faceset_build(fdb)
     #ht.test_space_build(fdb=fdb)
     #ht.test_space_update(fdb=fdb)
     #ht.test_space_delete(fdb=fdb)
-    ht.test_space_list(fdb=fdb)
+    #ht.test_space_list(fdb=fdb)
     #ht.test_space_space_info(fdb)

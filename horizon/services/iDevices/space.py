@@ -26,6 +26,8 @@ class DeviceSpaceManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
+        self.api_version = 'openapi/v1'
+        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
         self.content_type = 'application%2Fjson'
 
     def list(self, current=1, per_page=20):
@@ -41,7 +43,7 @@ class DeviceSpaceManager(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/device_spaces'
+        path = '/device_spaces'
 
         # 验证current 、per_page
         if (current and per_page):
@@ -61,8 +63,8 @@ class DeviceSpaceManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=params, headers=headers)
 
-        url = 'http://{0}{1}?{2}'.format(
-            self.host, path, au.get_canonical_querystring(params)
+        url = '{0}{1}?{2}'.format(
+            self.base_url, path, au.get_canonical_querystring(params)
         )
 
         print(url)
@@ -85,7 +87,7 @@ class DeviceSpaceManager(object):
         '''
 
         method = 'GET'
-        path = '/openapi/v1/device_spaces/%s' % space_id
+        path = '/device_spaces/%s' % space_id
 
         params = ''
 
@@ -97,7 +99,7 @@ class DeviceSpaceManager(object):
 
         # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._get(url, '', authorization)
@@ -113,7 +115,7 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/openapi/v1/device_spaces'
+        path = '/device_spaces'
 
         data = {'name': name}
         for k, v in kwargs.items():
@@ -127,7 +129,7 @@ class DeviceSpaceManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._post(url, json.dumps(data), authorization, '', headers=headers)
@@ -144,15 +146,12 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'PUT'
-        path = '/openapi/v1/device_spaces/%s' % space_id
+        path = '/device_spaces/%s' % space_id
 
         data = {}
         for k, v in kwargs.items():
             if k in _space_config_feild:
                 data.update({k: v})
-
-        print("data----")
-        print(data)
 
         headers = {
             'host': self.host,
@@ -162,7 +161,7 @@ class DeviceSpaceManager(object):
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
         # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._put(url, json.dumps(data), authorization, '', headers=headers)
@@ -176,7 +175,7 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/openapi/v1/device_spaces/%s' % space_id
+        path = '/device_spaces/%s' % space_id
 
         headers = {
             'host': self.host
@@ -184,8 +183,7 @@ class DeviceSpaceManager(object):
 
         authorization = self.auth.get_sign(http_method=method, path=path, params=None, headers=headers)
 
-        # url = 'http://{0}{1}?authorization={2}'.format(self.host, path, authorization)
-        url = 'http://{0}{1}'.format(self.host, path)
+        url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
         ret, info = dohttp._delete(url, auth=authorization)
