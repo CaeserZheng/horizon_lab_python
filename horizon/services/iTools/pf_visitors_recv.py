@@ -23,7 +23,7 @@ class GetVisitorByWebsocket(object):
 
     def __init__(self,auth,keep_alive=25,num_retries=-1,ws_header=None):
         self.auth = auth
-        self.path = '/ws'
+        self.path =self.api_version + '/ws'
         self.method = 'GET'
         self.host = 'xpushservice-aiot.horizon.ai'
         self.ws_addr = 'ws://{0}{1}'.format(self.host,self.path)

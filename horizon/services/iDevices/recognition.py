@@ -37,8 +37,8 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
     def __init__(self, auth):
         self.auth = auth
         self.host = "recopenapi-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
         self.facesets = facesets.FaceSetsManager(self.auth)
@@ -52,7 +52,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         '''
 
         method = 'POST'
-        path = '/facesets'
+        path =self.api_version + '/facesets'
 
         data = {'name': name}
 
@@ -78,7 +78,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         '''
 
         method = 'DELETE'
-        path = '/facesets/%s' % faceset_id
+        path =self.api_version + '/facesets/%s' % faceset_id
 
         headers = {
             'host': self.host
@@ -101,7 +101,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'POST'
-        path = '/facesets/%s/faces' % faceset_id
+        path =self.api_version + '/facesets/%s/faces' % faceset_id
 
         if not isinstance(face_list, tuple):
             raise ValueError('face_list must be a arry')
@@ -129,7 +129,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'PUT'
-        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path =self.api_version + '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         data = {}
         for k, v in kwargs.items():
@@ -158,7 +158,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'DELETE'
-        path = '/facesets/%s/faces' % faceset_id
+        path =self.api_version + '/facesets/%s/faces' % faceset_id
 
         headers = {
             'host': self.host,
@@ -184,7 +184,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'GET'
-        path = '/facesets/{0}/faces'.format(faceset_id)
+        path =self.api_version + '/facesets/{0}/faces'.format(faceset_id)
 
         # 验证current 、per_page
         if (current and per_page):
@@ -231,7 +231,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'POST'
-        path = '/facesets/%s/bind' % faceset_id
+        path =self.api_version + '/facesets/%s/bind' % faceset_id
 
         if not isinstance(device_list, tuple):
             raise ValueError('device_list is a arry[{"device_sn":xx,"threshold":xx}]')
@@ -261,7 +261,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'DELETE'
-        path = '/facesets/%s/unbind' % faceset_id
+        path =self.api_version + '/facesets/%s/unbind' % faceset_id
 
         if not isinstance(device_list, tuple):
             raise ValueError('device_list is a arry[{"device_sn":xx,"threshold":xx}]')
@@ -289,7 +289,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'GET'
-        path = '/facesets'
+        path =self.api_version + '/facesets'
 
         # 验证current 、per_page
         if (current and per_page):
@@ -333,7 +333,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'GET'
-        path = '/devices'
+        path =self.api_version + '/devices'
 
         if not type in [2, 3]:
             raise ValueError('type 客流识别机(2)或者识别机(3)')
@@ -380,7 +380,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'POST'
-        path = '/facesets/%s/faces/%s/sync' % (faceset_id, face_id)
+        path =self.api_version + '/facesets/%s/faces/%s/sync' % (faceset_id, face_id)
 
         data = {
             'device_sn': device_sn
@@ -408,7 +408,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'PUT'
-        path = '/facesets/%s/threshold' % (faceset_id)
+        path =self.api_version + '/facesets/%s/threshold' % (faceset_id)
 
         data = {
             'device_sn': device_sn,
@@ -438,7 +438,7 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
         :return:
         '''
         method = 'GET'
-        path = '/operations/%s' % request_id
+        path =self.api_version + '/operations/%s' % request_id
 
         params = {
             'faceset_id':faceset_id

@@ -41,8 +41,8 @@ class FaceUserManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def register(self, faceset_id, images, **kwargs):
@@ -54,7 +54,7 @@ class FaceUserManager(object):
         '''
 
         method = 'POST'
-        path = '/facesets/%s/faces' % faceset_id
+        path =self.api_version + '/facesets/%s/faces' % faceset_id
 
         data = {'images': images}
         for k, v in kwargs.items():
@@ -82,7 +82,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path =self.api_version + '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         headers = {
             'host': self.host
@@ -106,7 +106,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'PUT'
-        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path =self.api_version + '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         data = {}
         for k, v in kwargs.items():
@@ -138,7 +138,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/facesets/%s/faces/%s/images_add' % (faceset_id, face_id)
+        path =self.api_version + '/facesets/%s/faces/%s/images_add' % (faceset_id, face_id)
 
         data = {'images': images}
         for k, v in kwargs.items():
@@ -166,7 +166,7 @@ class FaceUserManager(object):
         :return:
         '''
         method = 'GET'
-        path = '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
+        path =self.api_version + '/facesets/{0}/faces/{1}'.format(faceset_id, face_id)
 
         headers = {
             'host': self.host
@@ -194,7 +194,7 @@ class FaceUserManager(object):
         '''
 
         method = 'GET'
-        path = '/facesets/%s/faces' % faceset_id
+        path =self.api_version + '/facesets/%s/faces' % faceset_id
 
         # 验证current 、per_page
         if (current and per_page):

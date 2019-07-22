@@ -68,8 +68,8 @@ class FaceDetect(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def __checkurl(self, strs):
@@ -84,7 +84,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/faces/detect'
+        path =self.api_version + '/faces/detect'
 
         data = {'image_type': image_type}
 
@@ -121,7 +121,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/faces/match'
+        path =self.api_version + '/faces/match'
 
         data = {'image_type': image_type}
 
@@ -158,7 +158,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/faces/search'
+        path =self.api_version + '/faces/search'
 
         data = {'image_type': image_type}
 
@@ -198,7 +198,7 @@ class FaceDetect(object):
         :return:
         '''
         method = 'POST'
-        path = '/faces/face_extract'
+        path =self.api_version + '/faces/face_extract'
 
 
         data = {'image_type': image_type}

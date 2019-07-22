@@ -26,8 +26,8 @@ class FaceSetsManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def build(self, name, **kwargs):
@@ -41,7 +41,7 @@ class FaceSetsManager(object):
         '''
 
         method = 'POST'
-        path = '/facesets'
+        path =self.api_version + '/facesets'
 
         data = {'name': name}
         for k, v in kwargs.items():
@@ -68,7 +68,7 @@ class FaceSetsManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/facesets/%s' % faceset_id
+        path =self.api_version + '/facesets/%s' % faceset_id
 
         headers = {
             'host': self.host
@@ -93,7 +93,7 @@ class FaceSetsManager(object):
         :return:
         '''
         method = 'PUT'
-        path = '/facesets/%s' % faceset_id
+        path =self.api_version + '/facesets/%s' % faceset_id
 
         data = {}
         for k, v in kwargs.items():
@@ -121,7 +121,7 @@ class FaceSetsManager(object):
         :return:
         '''
         method = 'GET'
-        path = '/facesets/%s' % faceset_id
+        path =self.api_version + '/facesets/%s' % faceset_id
 
         headers = {
             'host': self.host
@@ -152,7 +152,7 @@ class FaceSetsManager(object):
         '''
 
         method = 'GET'
-        path = '/facesets'
+        path =self.api_version + '/facesets'
 
         # 验证current 、per_page
         if (current and per_page):

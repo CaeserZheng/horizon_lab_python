@@ -42,6 +42,11 @@ class FacedTest(HorizionTestBase):
 
         self.writelog(re, op)
 
+        face_num = len(re[0]['data']['face_info'])
+        print('识别人脸个数：%d' % face_num)
+
+
+
     def test_fdb_face_match(self, fdb):
         image_type = 0
 
@@ -105,7 +110,7 @@ if __name__ == '__main__':
     fdb = faced.FaceDetect(mac)
 
     ht = FacedTest(log_path='../../log', log_tag='iService_faced')
-    ht.test_fdb_detect(fdb)
-    #ht.test_fdb_face_extract(fdb)
+    #ht.test_fdb_detect(fdb)
+    ht.test_fdb_face_extract(fdb)
     #ht.test_fdb_face_search(fdb)
     #ht.test_fdb_face_match(fdb)

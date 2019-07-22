@@ -26,8 +26,8 @@ class DeviceSpaceManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def list(self, current=1, per_page=20):
@@ -43,7 +43,7 @@ class DeviceSpaceManager(object):
         '''
 
         method = 'GET'
-        path = '/device_spaces'
+        path =self.api_version + '/device_spaces'
 
         # 验证current 、per_page
         if (current and per_page):
@@ -69,7 +69,7 @@ class DeviceSpaceManager(object):
 
         print(url)
 
-        ret, info = dohttp._get(url, '', auth=authorization)
+        ret, info = dohttp._get(url, auth=authorization)
 
         # 枚举列表是否完整
         eof = False
@@ -87,7 +87,7 @@ class DeviceSpaceManager(object):
         '''
 
         method = 'GET'
-        path = '/device_spaces/%s' % space_id
+        path =self.api_version + '/device_spaces/%s' % space_id
 
         params = ''
 
@@ -115,7 +115,7 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/device_spaces'
+        path =self.api_version + '/device_spaces'
 
         data = {'name': name}
         for k, v in kwargs.items():
@@ -146,7 +146,7 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'PUT'
-        path = '/device_spaces/%s' % space_id
+        path =self.api_version + '/device_spaces/%s' % space_id
 
         data = {}
         for k, v in kwargs.items():
@@ -175,7 +175,7 @@ class DeviceSpaceManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/device_spaces/%s' % space_id
+        path =self.api_version + '/device_spaces/%s' % space_id
 
         headers = {
             'host': self.host

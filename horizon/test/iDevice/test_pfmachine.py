@@ -74,7 +74,7 @@ if __name__ == '__main__':
     ht = PassengerFlowTest(log_path='../../log',log_tag='iDevice_pfmachine')
 
     #####test space.py
-    #ht.test_pf_line_config(fdb=fdb)
+    ht.test_pf_line_config(fdb=fdb)
     #ht.test_pf_line_search(fdb=fdb)
-    ht.test_pf_line_switch(fdb=fdb)
-    ht.test_pf_line_delete(fdb=fdb)
+    #ht.test_pf_line_switch(fdb=fdb)
+    #ht.test_pf_line_delete(fdb=fdb)

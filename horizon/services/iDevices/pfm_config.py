@@ -32,8 +32,8 @@ class PassengerFlowManager(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = 'api-aiot.horizon.ai'
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def pf_line_config(self, device_sn, lines, start_time, end_time):
@@ -52,7 +52,7 @@ class PassengerFlowManager(object):
         '''
 
         method = 'POST'
-        path = '/passengerflow/lines_config'
+        path = self.api_version + '/passengerflow/lines_config'
 
         data = {
             'device_sn': device_sn,
@@ -80,7 +80,7 @@ class PassengerFlowManager(object):
         :return:
         '''
         method = 'GET'
-        path = '/passengerflow/%s' % device_sn
+        path = self.api_version + '/passengerflow/%s' % device_sn
 
         headers = {
             'host': self.host
@@ -90,11 +90,11 @@ class PassengerFlowManager(object):
         url = '{0}{1}'.format(self.base_url, path)
         print(url)
 
-        ret, info = dohttp._get(url, auth = authorization)
+        ret, info = dohttp._get(url, auth=authorization)
 
         return ret, info
 
-    def pf_line_switch(self, device_sn,switch_status):
+    def pf_line_switch(self, device_sn, switch_status):
         '''
         用于查看客流的画的线的相关信息
         :param device_sn:
@@ -103,9 +103,9 @@ class PassengerFlowManager(object):
         '''
 
         method = 'PUT'
-        path = '/passengerflow/%s/switch' % device_sn
+        path = self.api_version + '/passengerflow/%s/switch' % device_sn
 
-        data = {'switch_status':switch_status}
+        data = {'switch_status': switch_status}
 
         headers = {
             'host': self.host,
@@ -120,7 +120,7 @@ class PassengerFlowManager(object):
 
         return ret, info
 
-    def pf_line_delete(self,device_sn ):
+    def pf_line_delete(self, device_sn):
         '''
         用于删除客流画线配置信息
         :param device_sn:
@@ -128,7 +128,7 @@ class PassengerFlowManager(object):
         '''
 
         method = 'DELETE'
-        path = '/passengerflow/%s' % device_sn
+        path = self.api_version + '/passengerflow/%s' % device_sn
 
         headers = {
             'host': self.host
@@ -141,5 +141,3 @@ class PassengerFlowManager(object):
         ret, info = dohttp._delete(url, auth=authorization)
 
         return ret, info
-
-

@@ -82,4 +82,4 @@ if __name__ == '__main__':
     #####test device.py
     #ht.test_device_list(fdb=fdb)
     ht.test_device_device_info(fdb)
-    ht.test_device_update_info(fdb=fdb)
+    #ht.test_device_update_info(fdb=fdb)

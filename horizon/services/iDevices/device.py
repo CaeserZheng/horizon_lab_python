@@ -46,8 +46,8 @@ class DeviceManager(object):
     def __init__(self,auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host,self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
 
         self.content_type = 'application%2Fjson'
 
@@ -69,7 +69,7 @@ class DeviceManager(object):
         '''
 
         method = 'GET'
-        path = '/devices'
+        path =self.api_version + '/devices'
 
         #验证current 、per_page
         if  (current and per_page):
@@ -117,7 +117,7 @@ class DeviceManager(object):
         '''
 
         method = 'GET'
-        path = '/devices/%s' % device_sn
+        path =self.api_version + '/devices/%s' % device_sn
 
         params = {}
 
@@ -154,7 +154,7 @@ class DeviceManager(object):
         extra	string	否	设备额外信息，长度限制512字节
         '''
         method = 'PUT'
-        path = '/devices/%s/update' % device_sn
+        path =self.api_version + '/devices/%s/update' % device_sn
 
         data = {'space_id':space_id}
         for k,v in kwargs.items():
@@ -203,7 +203,7 @@ class DeviceManager(object):
         '''
 
         method = 'PUT'
-        path = '/devices/%s' % device_sn
+        path =self.api_version + '/devices/%s' % device_sn
 
         moduls = 'capture_config'
         if isinstance(device_cfg, list):
@@ -236,7 +236,7 @@ class DeviceManager(object):
         :return:
         '''
         method = 'POST'
-        path = '/devices/screenshot'
+        path =self.api_version + '/devices/screenshot'
 
         data = {
             'device_sn':device_sn
@@ -261,7 +261,7 @@ class DeviceManager(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/devices/%s' % device_sn
+        path =self.api_version + '/devices/%s' % device_sn
 
         headers = {
             'host': self.host

@@ -26,8 +26,8 @@ class PassergentFlowAnalysis(object):
     def __init__(self, auth):
         self.auth = auth
         self.host = "api-aiot.horizon.ai"
-        self.api_version = 'openapi/v1'
-        self.base_url = 'http://{0}/{1}'.format(self.host, self.api_version)
+        self.api_version = '/openapi/v1'
+        self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 
     def enable_analysis(self, space_id, enable_auto_reg=True):
@@ -39,7 +39,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'POST'
-        path = '/analysis_tools/enable'
+        path =self.api_version + '/analysis_tools/enable'
 
         data = {
             'space_id': space_id,
@@ -67,7 +67,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'POST'
-        path = '/analysis_tools/attach_space'
+        path =self.api_version + '/analysis_tools/attach_space'
 
         data = {
             'space_ids': space_ids,
@@ -99,7 +99,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'GET'
-        path = '/analysis_tools/%s/count' % device_sn
+        path =self.api_version + '/analysis_tools/%s/count' % device_sn
 
         params = {
             'start_time': start_time,
@@ -129,7 +129,7 @@ class PassergentFlowAnalysis(object):
         '''
 
         method = 'GET'
-        path = '/analysis_tools/%s/visitors' % device_sn
+        path =self.api_version + '/analysis_tools/%s/visitors' % device_sn
 
         # 验证current 、per_page
         if (current and per_page):
@@ -172,7 +172,7 @@ class PassergentFlowAnalysis(object):
         :return:
         '''
         method = 'PUT'
-        path = '/analysis_tools/visitors/sub'
+        path =self.api_version + '/analysis_tools/visitors/sub'
 
         if not topic_name in _topic_name_feild:
             raise ValueError('topic_name [%s] error!!' % topic_name)
@@ -204,7 +204,7 @@ class PassergentFlowAnalysis(object):
         :return:
         '''
         method = 'DELETE'
-        path = '/analysis_tools/visitors/sub/%s' % subscription_id
+        path =self.api_version + '/analysis_tools/visitors/sub/%s' % subscription_id
 
         headers = {
             'host': self.host
