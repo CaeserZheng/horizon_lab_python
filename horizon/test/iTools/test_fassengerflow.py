@@ -13,8 +13,6 @@ import unittest
 import json,sys
 from horizon.test.utils import HorizionTestBase
 from horizon.test.test_param_cfg import ak, sk
-from horizon.utils import image_base64_encode, image_base64_decode
-import time
 
 
 class PassengerFlowTest(HorizionTestBase):
