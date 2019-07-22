@@ -71,7 +71,7 @@ class FaceuTest(HorizionTestBase):
         face_id = '5d314db3f67f1000085b20d2'
 
         images = []
-        image_file = 'E:\个人\职业.jpg'
+        image_file = '../../image/wyz_01.jpeg'
         image2 = {
             'image_type': 1,
             'image_base64': image_base64_encode(image_file)
