@@ -1,0 +1,10 @@
+{
+    "timestamp": "2019-07-22 16:38:02",
+    "op": "test test_fdb_build ",
+    "info": {
+        "message": "Dup error: name value [office-3] is duplicate",
+        "code": 100106,
+        "request_id": "a41472e4-15b3-4340-bab6-64e78c547f15",
+        "data": null
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "timestamp": "2019-07-22 16:33:33",
+    "op": "test test_faceset_build ",
+    "info": "{\"code\":503\",\"message\":<html>\n<head>\n    <title>Charles Error Report</title>\n    <style type=\"text/css\">\nbody {\n    font-family: Arial,Helvetica,Sans-serif;\n    font-size: 12px;\n    color: #333333;\n    background-color: #ffffff;\n}\n\nh1 {\n    font-size: 24px;\n    font-weight: bold;\n}\n\nh2 {\n    font-size: 18px;\n    font-weight: bold;\n}\n    </style>\n</head>\n<body>\n\n<h1>Charles Error Report</h1>\n<h2>Name lookup failed for remote host</h2>\n<p>Charles failed to resolve the name of the remote host into an IP address. Check that the URL is correct.</p>\n<p>The actual exception reported was:</p>\n<pre>\njava.net.UnknownHostException: recopenapi-aiot.horizon.ai\n</pre>\n\n<p>\n<i>Charles Proxy, <a href=\"http://www.charlesproxy.com/\">http://www.charlesproxy.com/</a></i>\n</p>\n</body>\n</html>}"
+}

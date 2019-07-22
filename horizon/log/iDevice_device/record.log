@@ -1,5 +1,0 @@
-{
-    "timestamp": "2019-07-22 16:05:25",
-    "op": "test test_device_device_info ",
-    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
-}

@@ -1,0 +1,10 @@
+{
+    "timestamp": "2019-07-22 16:33:21",
+    "op": "test test_pf_line_config ",
+    "info": {
+        "message": "User have not permission to do device: Device Not Found ",
+        "code": 120003,
+        "request_id": "7a444336-7406-4251-864a-346c1b98ffa2",
+        "data": null
+    }
+}

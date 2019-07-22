@@ -1,0 +1,12 @@
+{
+    "timestamp": "2019-07-22 16:39:04",
+    "op": "test test_fdb_visitors_sub ",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "51de1e77-d8c0-40de-8e6c-3a0ea00b255a",
+        "data": {
+            "subscription_id": "29b975c3-ac5c-11e9-907c-0a58c0a80e02"
+        }
+    }
+}
