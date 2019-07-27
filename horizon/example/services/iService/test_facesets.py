@@ -7,7 +7,7 @@
 @Email   : zgl3010@qq.com
 """
 
-from horizon.services.iServices import faced, facesets, faceu
+from horizon.services.iServices import facedet, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json,sys
@@ -35,21 +35,21 @@ class FacesetsTest(HorizionTestBase):
     def test_fdb_update(self,fdb):
         facesets_id = '5d3029a7a21c33000804b8e4'
         name = 'update-ttt'
-        op = 'test facesets info update'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.update(facesets_id,name=name)
 
         self.writelog(re, op)
 
     def test_fdb_search(self,fdb):
         facesets_id = '5d3029a7a21c33000804b8e4'
-        op = 'test facesets search by facesets_id'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.search(facesets_id)
 
 
         self.writelog(re,op)
 
     def test_fdb_list(self, fdb):
-        op = 'test facesets list'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.list()
 
         self.writelog(re,op)

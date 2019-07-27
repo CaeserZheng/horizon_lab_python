@@ -7,9 +7,7 @@
 @Email   : zgl3010@qq.com
 """
 
-# -*- coding: utf-8 -*-
 import platform
-
 import requests
 
 from horizon.compat import is_py2, is_py3
@@ -26,7 +24,6 @@ USER_AGENT = 'MyHorizonApiPythonTest/{0} ({1}; ) Python/{2}'.format(
 _session = None
 _headers = {'User-Agent': USER_AGENT}
 
-
 def __return_wrapper(resp):
     if resp.status_code != 200:
         return None, ResponseInfo(resp)
@@ -35,7 +32,6 @@ def __return_wrapper(resp):
     if ret is None:  # json null
         ret = {}
     return ret, ResponseInfo(resp)
-
 
 def _init():
     session = requests.Session()
@@ -46,7 +42,6 @@ def _init():
     session.mount('http://', adapter)
     global _session
     _session = session
-
 
 def _post(url, data, auth, files=None, headers=None):
     if _session is None:

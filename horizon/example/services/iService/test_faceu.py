@@ -7,10 +7,11 @@
 @Email   : zgl3010@qq.com
 """
 
-from horizon.services.iServices import faced, facesets, faceu
+from horizon.services.iServices import facedet, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json
+import sys
 from horizon.example.utils import HorizionTestBase
 from horizon.example.test_param_cfg import ak, sk
 from horizon.utils import image_base64_encode
@@ -38,7 +39,7 @@ class FaceuTest(HorizionTestBase):
         }
         images.append(image2)
 
-        op = 'test faceu build'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.register(faceset_id=faceset_id, attributes=attributes, images=images)
 
         self.writelog(re, op)
@@ -47,7 +48,7 @@ class FaceuTest(HorizionTestBase):
         faceset_id = '5d3029a7a21c33000804b8e4'
         face_id = '5d3161fcf67f1000085b20f1'
 
-        op = 'test faece delete'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.delete(faceset_id,face_id)
 
         self.writelog(re, op)
@@ -61,7 +62,7 @@ class FaceuTest(HorizionTestBase):
             'gender': 'male'
         }
 
-        op = 'test update user'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.update_user(faceset_id, face_id,attributes=attributes)
 
         self.writelog(re, op)
@@ -78,21 +79,21 @@ class FaceuTest(HorizionTestBase):
         }
         images.append(image2)
         name = 'update-ttt'
-        op = 'test faceu update user images'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.update_user_image(faceset_id, face_id, images)
 
         self.writelog(re, op)
 
     def test_fdb_search(self, fdb):
         facesets_id = '5d3029a7a21c33000804b8e4'
-        op = 'test facesets search by facesets_id'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.search(facesets_id)
 
         self.writelog(re, op)
 
     def test_fdb_list(self, fdb):
         faceset_id = '5d3029a7a21c33000804b8e4'
-        op = 'test facesets list'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.list(faceset_id)
 
         self.writelog(re, op)

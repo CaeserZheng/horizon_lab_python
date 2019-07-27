@@ -89,9 +89,6 @@ class Auth():
             http_method, canonical_uri, canonical_querystring,
             canonical_headers
         ])
-        #print('#5 string_to_sign--')
-        #print(str(string_to_sign))
-        #print('#5 string_to_sign--')
 
         token = self.__token(timestamp, string_to_sign)
         #print('#5 token -->',token)
@@ -121,9 +118,7 @@ def normalize_string(in_str, encoding_slash=True):
         res = url_encode(str(in_str))
     else:
         res = in_str
-
     return res
-
 def get_canonical_uri(path):
     return normalize_string(path, False)
 
@@ -166,6 +161,7 @@ NORMALIZED_CHAR_LIST = [get_normalized_char(i) for i in range(256)]
 def normalize_string1(in_str, encoding_slash=True):
     if in_str is None:
         return ''
+    in_str = str(in_str)
     # 在生成规范URI时。不需要对斜杠'/'进行编码，其他情况下都需要
     if encoding_slash:
         encode_f = lambda c: NORMALIZED_CHAR_LIST[ord(c)]

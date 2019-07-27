@@ -7,10 +7,11 @@
 @Email   : zgl3010@qq.com
 """
 
-from horizon.services.iServices import faced, facesets, faceu
+from horizon.services.iServices import facedet, facesets, faceu
 from horizon.auth import Auth
 import unittest
 import json
+import sys
 from horizon.example.utils import HorizionTestBase
 from horizon.example.test_param_cfg import ak, sk
 from horizon.utils import image_base64_encode, image_base64_decode
@@ -36,7 +37,7 @@ class FacedTest(HorizionTestBase):
         attributes = ['pose', 'age', 'gender', 'feature']
         attr = ','.join(attributes)
 
-        op = 'test faced detet'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.detect(image_type=image_type, image_obj=image_obj, attributes=attr,
                         max_face_count=max_face_count, keypoint=keypoint, quality=quality)
 
@@ -57,7 +58,7 @@ class FacedTest(HorizionTestBase):
 
         image_obj_1 = image_url_1
         image_obj_2 = image_url_2
-        op = 'test faced match'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.match(image_type=image_type, image_obj_1=image_obj_1,image_obj_2=image_obj_2)
 
         self.writelog(re, op)
@@ -74,7 +75,7 @@ class FacedTest(HorizionTestBase):
         faceset_id = '5d3029a7a21c33000804b8e4'
         faceset_ids = [faceset_id]
 
-        op = 'test faced search'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.search(image_type=image_type, image_obj=image_obj, faceset_ids=faceset_ids)
 
         self.writelog(re, op)
@@ -92,7 +93,7 @@ class FacedTest(HorizionTestBase):
 
         max_face_count = 100
 
-        op = 'test faced extract'
+        op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.face_extract(image_type=image_type, image_obj=image_obj, max_face_count=max_face_count)
 
         count = 0
@@ -107,7 +108,7 @@ class FacedTest(HorizionTestBase):
 
 if __name__ == '__main__':
     mac = Auth(ak, sk)
-    fdb = faced.FaceDetect(mac)
+    fdb = facedet.FaceDetect(mac)
 
     ht = FacedTest(log_path='../../log', log_tag='iService',log_file='faced')
     #ht.test_fdb_detect(fdb)
