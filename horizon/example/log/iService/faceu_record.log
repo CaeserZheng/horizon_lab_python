@@ -23,3 +23,28 @@
         }
     }
 }
+{
+    "timestamp": "2019-07-30 10:21:05",
+    "op": "test test_fdb_register ",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "32410c70-9075-4888-a326-e0191ceadf4a",
+        "data": {
+            "faceset_id": "5d3029a7a21c33000804b8e4",
+            "face_id": "5d3fa990cf174400088707ff",
+            "images": [
+                {
+                    "url": "https://horizon-ib-test.oss-cn-zhangjiakou.aliyuncs.com/Pictureserver/a21c33f35d2d88ad0dac680b/2019730/a21c33f35d2d88ad0dac680b_fPCls11GcFpU-1564453264657809901?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LTAIiUHHchQK9Lfy%2F20190730%2Fcn-zhangjiakou%2Fs3%2Faws4_request&X-Amz-Date=20190730T022104Z&X-Amz-Expires=604740&X-Amz-SignedHeaders=host&X-Amz-Signature=700ac617f3f921f5342d01b4f1384d470f661f9338c069e44e0ebc35bdf7f7c7",
+                    "expired_time": "2019-08-06T10:10:04+08:00"
+                }
+            ],
+            "attributes": {
+                "age_group": 4,
+                "gender": 1
+            },
+            "created_time": "2019-07-30T10:21:04+08:00",
+            "updated_time": "2019-07-30T10:21:04+08:00"
+        }
+    }
+}

@@ -115,8 +115,8 @@ def _delete(url, data=None ,params=None, auth=None):
 
 
 class ResponseInfo(object):
-    """七牛HTTP请求返回信息类
-    该类主要是用于获取和解析对七牛发起各种请求后的响应包的header和body。
+    """地平线商业PaaS HTTP请求返回信息类
+    该类主要是用于获取和解析对客户端发起各种请求后的响应包的header和body。
     Attributes:
         status_code: 整数变量，响应状态码
         text_body:   字符串变量，响应的body
@@ -132,23 +132,6 @@ class ResponseInfo(object):
             self.text_body = None
             self.error = str(exception)
         else:
-            ''''
-            self.status_code = response.status_code
-            self.text_body = response.text
-            
-            if self.status_code >= 400:
-                ret = {}
-                try:
-                    ret = response.json() if response.text != '' else None
-                except  ValueError:  # r.json() raises an exception. raises ValueError: No JSON object could be decoded
-                    ret['message'] = self.text_body
-                    ret['code'] = self.status_code
-                if ret is None or ret['message'] is None:
-                    self.error = 'unknown'
-                else:
-                    self.error = '{"code":%d","message":%s}' % (ret['code'] , ret['message'])
-        
-        '''
             self.status_code = response.status_code
             self.text_body = response.text
             ret = {}
@@ -174,7 +157,7 @@ class ResponseInfo(object):
         return self.status_code == 200
 
     def need_retry(self):
-        if self.__response is None or self.req_id is None:
+        if self.__response is None :
             return True
         code = self.status_code
         if (code // 100 == 5 and code != 579) or code == 996:
@@ -182,7 +165,7 @@ class ResponseInfo(object):
         return False
 
     def connect_failed(self):
-        return self.__response is None or self.req_id is None
+        return self.__response is None
 
     def __str__(self):
         if is_py2:

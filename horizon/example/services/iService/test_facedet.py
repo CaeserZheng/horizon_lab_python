@@ -21,13 +21,13 @@ import time
 class FacedTest(HorizionTestBase):
 
     def test_fdb_detect(self, fdb):
-        image_type = 0
+        image_type = 0 #[0 url,1 base64]
 
         single_people = 'http://z-qn-oss.ultrakevin.top/horizon_faseu/person_career.jpg'
-        mult_people = 'https://z-qn-oss.ultrakevin.top/horizion/faced_test/allstart.jpg'
-        image_url = mult_people
+        #mult_people = 'https://z-qn-oss.ultrakevin.top/horizion/faced_test/allstart.jpg'
+        image_url = single_people
 
-        image_file = ''
+        image_file = image_base64_encode('../../image/gelaimei-starts.jpg')
         image_obj = image_url
 
         max_face_count = 100
@@ -81,15 +81,15 @@ class FacedTest(HorizionTestBase):
         self.writelog(re, op)
 
     def test_fdb_face_extract(self, fdb):
-        image_type = 0
+        image_type = 1 #[0 url;    1 base64]
 
         single_people = 'http://z-qn-oss.ultrakevin.top/horizon_faseu/person_career.jpg'
         #mult_people = 'https://z-qn-oss.ultrakevin.top/horizion/faced_test/wujiandao.jpg'
         mult_people = 'https://z-qn-oss.ultrakevin.top/horizion/faced_test/allstart.jpg'
         image_url = mult_people
 
-        image_file = ''
-        image_obj = image_url
+        image_file = '../../image/gelaimei-starts.jpg'
+        image_obj = image_base64_encode(image_file)
 
         max_face_count = 100
 
@@ -100,7 +100,7 @@ class FacedTest(HorizionTestBase):
         request_id = re[0]['request_id']
         for i in re[0]['data']:
             count += 1
-            image_file = '{0}/image/{1}_{2}_{3}.jpg'.format(self.log_path,request_id,int(time.time()),count)
+            image_file = '{0}/image/{1}_{2}_{3}.jpg'.format(self.log_path,request_id[0:13],int(time.time()),count)
             print(image_base64_decode(image_file,i['image_base64']))
 
         self.writelog(re, op)
@@ -110,8 +110,8 @@ if __name__ == '__main__':
     mac = Auth(ak, sk)
     fdb = facedet.FaceDetect(mac)
 
-    ht = FacedTest(log_path='../../log', log_tag='iService',log_file='faced')
-    #ht.test_fdb_detect(fdb)
-    ht.test_fdb_face_extract(fdb)
+    ht = FacedTest(log_path='../../log', log_tag='iService',log_file='facedetect')
+    ht.test_fdb_detect(fdb)
+    #ht.test_fdb_face_extract(fdb)
     #ht.test_fdb_face_search(fdb)
     #ht.test_fdb_face_match(fdb)
