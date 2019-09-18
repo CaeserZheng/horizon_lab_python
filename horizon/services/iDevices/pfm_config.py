@@ -10,6 +10,7 @@
 import json
 from horizon import dohttp
 import horizon.auth as au
+from horizon.config import _config
 
 _line_feild = set([
     'line_type',  # 画线朝向，0为进店方向：left->right=in，up->down=in；1为出店方向：left->right=out，up->down=out
@@ -31,8 +32,8 @@ class PassengerFlowManager(object):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = 'api-aiot.horizon.ai'
-        self.api_version = '/openapi/v1'
+        self.host = _config['default_requet_host']
+        self.api_version = _config['default_api_version']
         self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 

@@ -10,6 +10,7 @@ import hashlib
 import json
 from horizon import dohttp
 import horizon.auth as au
+from horizon.config import _config
 
 _space_config_feild = set([
     'name',  # 设备空间的名字，最长80个字符
@@ -25,8 +26,8 @@ class DeviceSpaceManager(object):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = "api-aiot.horizon.ai"
-        self.api_version = '/openapi/v1'
+        self.host = _config['default_requet_host']
+        self.api_version = _config['default_api_version']
         self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 

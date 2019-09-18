@@ -10,6 +10,7 @@
 import json
 from horizon import dohttp
 import horizon.auth as au
+from horizon.config import _config
 
 _moduls_feild = set([
         'capture_config',  #摄像机配置模块
@@ -45,8 +46,8 @@ class DeviceManager(object):
 
     def __init__(self,auth):
         self.auth = auth
-        self.host = "api-aiot.horizon.ai"
-        self.api_version = '/openapi/v1'
+        self.host = _config['default_requet_host']
+        self.api_version = _config['default_api_version']
         self.base_url = 'http://{0}'.format(self.host)
 
         self.content_type = 'application%2Fjson'

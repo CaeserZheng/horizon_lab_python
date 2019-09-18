@@ -80,6 +80,6 @@ if __name__ == '__main__':
     ht = DeviceTest(log_path='../../log',log_tag='iDevice',log_file='device')
 
     #####test device.py
-    #ht.test_device_list(fdb=fdb)
-    ht.test_device_device_info(fdb)
+    ht.test_device_list(fdb=fdb)
+    #ht.test_device_device_info(fdb)
     #ht.test_device_update_info(fdb=fdb)

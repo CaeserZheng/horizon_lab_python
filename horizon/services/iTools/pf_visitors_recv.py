@@ -13,6 +13,7 @@ import json
 import logging
 import threading
 import time
+from horizon.config import _config
 from threading import Thread
 
 
@@ -25,7 +26,7 @@ class GetVisitorByWebsocket(object):
         self.auth = auth
         self.path = '/ws'
         self.method = 'GET'
-        self.host = 'xpushservice-aiot.horizon.ai'
+        self.host = _config['ws_host']
         self.ws_addr = 'ws://{0}{1}'.format(self.host,self.path)
 
         self.num_retries=num_retries
