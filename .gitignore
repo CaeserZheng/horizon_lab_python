@@ -9,3 +9,7 @@ __pycache__/
 *.pyc
 *.py[cod]
 *$py.class
+
+example/image/
+example/log/
+example/test.py

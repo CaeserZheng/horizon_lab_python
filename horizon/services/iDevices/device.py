@@ -15,7 +15,6 @@ from horizon.config import _config
 _moduls_feild = set([
         'capture_config',  #摄像机配置模块
 ])
-
 _device_info_feild = set([
     'space_id',	    #string	是	目标设备空间id
     'name',	        #string	否	设备名称，长度限制80字节

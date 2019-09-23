@@ -1,14 +1,4 @@
 {
-    "timestamp": "2019-07-22 16:33:00",
-    "op": "test test_device_device_info ",
-    "info": "{\"code\":120703\",\"message\":Service 7 Get Device common error: Device not found }"
-}
-{
-    "timestamp": "2019-09-18 10:55:14",
-    "op": "test test_device_device_info ",
-    "info": "{\"code\":1001\",\"message\":Invalid authorization query: unqualified Ak Sk pair}"
-}
-{
     "timestamp": "2019-09-18 11:06:19",
     "op": "test test_device_list ",
     "info": "{\"code\":1001\",\"message\":Invalid authorization query: unqualified Ak Sk pair}"
@@ -20,6 +10,21 @@
         "message": "success",
         "code": 0,
         "request_id": "29d931e4-425a-47f7-b6a3-f261ff450369",
+        "data": null,
+        "pagination": {
+            "current": 1,
+            "total": 0,
+            "per_page": 20
+        }
+    }
+}
+{
+    "timestamp": "2019-09-18 18:11:34",
+    "op": "test test_device_list ",
+    "info": {
+        "message": "success",
+        "code": 0,
+        "request_id": "414c44c2-a5d0-4f35-8f04-3ef29e72212d",
         "data": null,
         "pagination": {
             "current": 1,

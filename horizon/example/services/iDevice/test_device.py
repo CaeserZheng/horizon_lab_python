@@ -19,7 +19,7 @@ class DeviceTest(HorizionTestBase):
     def test_device_list(self,fdb):
         current = 1
         per_page = 20
-        space_id = 'a21c33f35d2d88ad0dac680b_S5goKvFq'
+        space_id = '6d7c11ff5d7ef2d859f7ad9e_AtlNa0uk'
         attributes = {'capture_config': ['snapsizethr', 'frontthr']}
 
         op = 'test %s ' % sys._getframe().f_code.co_name

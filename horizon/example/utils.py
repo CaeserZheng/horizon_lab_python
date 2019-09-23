@@ -11,7 +11,7 @@ import os
 import sys
 
 
-class InfoRecode(object):
+class InfoRecord(object):
     '''
     记录测试日志
     '''
@@ -46,7 +46,7 @@ class HorizionTestBase(object):
         self.log_path = log_path
         self.log_tag = log_tag
         self.log_file = log_file
-        self.note = InfoRecode(log_path, log_tag, log_file)
+        self.note = InfoRecord(log_path, log_tag, log_file)
 
     def writelog(self, re, op):
         for i in re:

@@ -22,7 +22,7 @@ class SpaceTest(HorizionTestBase):
         self.writelog(re,op)
 
     def test_space_space_info(self,fdb):
-        space_id = 'a21c33f35d2d88ad0dac680bdefaultspace'
+        space_id = '6d7c11ff5d7ef2d859f7ad9e_AtlNa0uk'
         op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.space_info(space_id)
 
@@ -36,7 +36,7 @@ class SpaceTest(HorizionTestBase):
         self.writelog(re, op)
 
     def test_space_update(self,fdb):
-        space_id = 'a21c33f35d2d88ad0dac680b_BQ5KZjor'
+        space_id = '6d7c11ff5d7ef2d859f7ad9e_AtlNa0uk'
         name = 'test_update_space'
         description = 'test update space'
         extra = json.dumps({'enable_analysis_tools':True})
@@ -47,7 +47,7 @@ class SpaceTest(HorizionTestBase):
         self.writelog(re,op)
 
     def test_space_delete(self, fdb):
-        space_id = 'a21c33f35d2d88ad0dac680b_BQ5KZjor'
+        space_id = '6d7c11ff5d7ef2d859f7ad9e_AtlNa0uk'
 
         op = 'test %s ' % sys._getframe().f_code.co_name
         re = fdb.delete(space_id=space_id)
