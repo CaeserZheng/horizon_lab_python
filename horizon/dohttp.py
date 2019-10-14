@@ -94,8 +94,6 @@ def _get(url, params=None, auth=None):
             headers=_headers)
     except Exception as e:
         return None, ResponseInfo(None, e)
-    if r.json()['code'] != 0:
-        return None, ResponseInfo(r)
     return __return_wrapper(r)
 
 

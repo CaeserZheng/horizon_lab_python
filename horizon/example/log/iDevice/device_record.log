@@ -33,3 +33,23 @@
         }
     }
 }
+{
+    "timestamp": "2019-10-14 17:26:44",
+    "op": "test test_device_list ",
+    "info": "{\"code\":1001\",\"message\":Invalid authorization query: unqualified Ak Sk pair}"
+}
+{
+    "timestamp": "2019-10-14 17:27:30",
+    "op": "test test_device_list ",
+    "info": "{\"code\":1001\",\"message\":Invalid authorization query: unqualified Ak Sk pair}"
+}
+{
+    "timestamp": "2019-10-14 17:30:00",
+    "op": "test test_device_list ",
+    "info": "{\"code\":1001\",\"message\":Invalid authorization query: unqualified Ak Sk pair}"
+}
+{
+    "timestamp": "2019-10-14 17:42:27",
+    "op": "test test_device_list ",
+    "info": "{\"code\":404\",\"message\":404 page not found}"
+}

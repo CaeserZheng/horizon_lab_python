@@ -7,11 +7,13 @@ __mtime__ = '2019/7/16'
 
 API_HOST = 'api-aiot.horizon.ai'
 DEV_HOST = 'openapi.ib-dev.k8s.hobot.cc'
+X1600_TEST_HOST = 'recopenapi-x1600.ib-dev.k8s.hobot.cc'
+
 API_VERSION = '/openapi/v1'
 WEBSOCKET_HOST = 'xpushservice-aiot.horizon.ai'
 
 _config = {
-    'default_requet_host': DEV_HOST,
+    'default_requet_host': X1600_TEST_HOST,
     'default_api_version': API_VERSION,
     'ws_host':WEBSOCKET_HOST,
     'connection_timeout': 30,
