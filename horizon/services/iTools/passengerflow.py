@@ -11,7 +11,7 @@ import json
 from horizon import dohttp
 from horizon import utils
 import horizon.auth as au
-from horizon.config import _config
+from horizon import config
 import time
 
 _topic_name_feild = ([
@@ -26,8 +26,8 @@ class PassergentFlowAnalysis(object):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = _config['default_requet_host']
-        self.api_version = _config['default_api_version']
+        self.host = config.get_default('default_requet_host')
+        self.api_version = config.get_default('default_api_version')
         self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 

@@ -23,9 +23,6 @@ class Auth():
         self.ak = app_access_key
         self.sk = app_secret_key
 
-        #print('------ak-------\n',self.ak)
-        #print('------sk-------\n', self.sk,'\n------------')
-
     @staticmethod
     def __checkKey(access_key, secret_key):
         if not (access_key and secret_key):
@@ -53,17 +50,6 @@ class Auth():
         # 7.拼接最终签名结果串
         return '%s/%s' % (sign_key_info, sign_result)
 
-    '''
-    def urlparse(self,url):
-        url_list = parse.urlparse(url)
-        path = '%s%s' % (url_list[1],url_list[2])
-
-        if '#' in url:
-            params = '%s#%s' % (url_list[4],url_list[5])
-        else:
-            params = url_list[4]
-        return path,params
-    '''
     def get_sign(self, http_method, path, params, headers, timestamp=None):
         headers = headers or {}
         params = params or {}

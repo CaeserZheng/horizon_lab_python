@@ -11,7 +11,7 @@ import json
 from horizon import dohttp
 import horizon.auth as au
 import horizon.services.iServices.facesets as facesets
-from horizon.config import _config
+from horizon import config
 
 _user_face_list_feild = set([
     'face_id',  # string	是	用户id,全局唯一,命名规则：仅支持数字，大小写字母，下划线组成，长度限制1-30字符
@@ -37,8 +37,8 @@ class RecognitionMachineManager(facesets.FaceSetsManager):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = _config['default_requet_host']
-        self.api_version = _config['default_api_version']
+        self.host = config.get_default('default_requet_host')
+        self.api_version = config.get_default('default_api_version')
         self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 

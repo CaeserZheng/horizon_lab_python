@@ -7,7 +7,7 @@
 @Email   : zgl3010@qq.com
 """
 from horizon import dohttp
-from horizon.config import _config
+from horizon import config
 import json
 
 _drive_behavior_body_feild = set([
@@ -32,8 +32,8 @@ class DriveBehaviorRecognition(object):
 
     def __init__(self, auth):
         self.auth = auth
-        self.host = _config['default_requet_host']
-        self.api_version = _config['default_api_version']
+        self.host = config.get_default('default_requet_host')
+        self.api_version = config.get_default('default_api_version')
         self.base_url = 'http://{0}'.format(self.host)
         self.content_type = 'application%2Fjson'
 

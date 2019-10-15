@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-.- coding=utf-8 -.-
+# -.- coding=utf-8 -.-
 '''
 __author__ = 'caeser'
 __mtime__ = '2019/7/16'
@@ -15,14 +15,16 @@ WEBSOCKET_HOST = 'xpushservice-aiot.horizon.ai'
 _config = {
     'default_requet_host': X1600_TEST_HOST,
     'default_api_version': API_VERSION,
-    'ws_host':WEBSOCKET_HOST,
+    'ws_host': WEBSOCKET_HOST,
     'connection_timeout': 30,
     'connection_retries': 3,
     'connection_pool': 10,
 }
 
+
 def get_default(key):
     return _config[key]
+
 
 def set_default(
         default_requet_host=None, connection_retries=None, connection_pool=None, connection_timeout=None):
